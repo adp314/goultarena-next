@@ -1,10 +1,15 @@
 import { type NextPage } from "next";
+import { UpperNav } from "@/layouts/UpperNav";
+import { Nav } from "@/layouts/Nav";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Home: NextPage = () => {
   return (
-    <div className="animate-gradient bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white"></div>
+    <div>
+      <UpperNav />
+      <Nav />
+    </div>
   );
 };
 
