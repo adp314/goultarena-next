@@ -26,13 +26,23 @@ export const ConnectedBtn = () => {
               className="rounded-full"
             />
             {isOpen && (
-              <ul className="absolute top-20 flex h-max w-24 flex-col items-center justify-center gap-2 rounded-xl bg-white py-3">
-                <li className="flex items-center justify-center gap-2 text-black">
+              <ul className="absolute top-14 flex h-max w-24 flex-col items-center justify-center rounded-xl bg-gray-400 bg-opacity-20 text-white">
+                <li className="flex h-full w-full items-center justify-center bg-black bg-opacity-40 py-2 ">
                   {" "}
-                  <Coin /> 777
+                  <span className="flex  h-full w-full items-center justify-center gap-2">
+                    <Coin /> <p className="text-lg"> 777</p>
+                  </span>
                 </li>
-                <span className="h-0.5 w-[50%] rounded-full bg-black bg-opacity-20"></span>
-                <li className="text-black" onClick={() => void signOut()}>
+                <span className="h-[1px] w-full bg-white bg-opacity-10" />
+                <li className="py-2" onClick={() => void signOut()}>
+                  Account
+                </li>
+                <span className="h-[1px] w-full bg-white bg-opacity-10" />
+                <li className="py-2" onClick={() => void signOut()}>
+                  Profil
+                </li>
+                <span className="h-[1px] w-full bg-white bg-opacity-10" />
+                <li className="py-2" onClick={() => void signOut()}>
                   Logout
                 </li>
               </ul>
