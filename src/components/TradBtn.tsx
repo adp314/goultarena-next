@@ -1,4 +1,4 @@
-import { Translate } from "iconoir-react";
+import { Language } from "iconoir-react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -14,20 +14,17 @@ export const TradBtn = () => {
   }
 
   return (
-    <div>
+    <div className="font-KoHo">
       <div
-        className="relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-md bg-gray-500 bg-opacity-30 text-white"
+        className="relative mt-2 flex h-7 w-7 cursor-pointer text-gray-100 opacity-50 hover:text-white hover:opacity-90"
         onClick={toggleMenu}
       >
-        <Translate
-          strokeWidth="1"
-          className="text-xl text-gray-100 text-opacity-30"
-        />
+        <Language strokeWidth="1.2" className="h-full w-full " />
         {isOpen && (
-          <ul className="absolute right-0 top-12 flex h-16 w-10 flex-col items-center justify-center rounded-md bg-gray-500 bg-opacity-30 p-1.5 shadow">
+          <ul className="absolute -right-1.5 top-12 flex h-14 w-10 flex-col items-center justify-center rounded-md bg-gray-500 bg-opacity-30 shadow">
             <li>
               <a
-                className="text-xl text-gray-100 text-opacity-30 hover:text-white"
+                className="text-base text-gray-300 hover:text-white"
                 onClick={() => handleLanguageChange("en")}
               >
                 EN
@@ -35,7 +32,7 @@ export const TradBtn = () => {
             </li>
             <li>
               <a
-                className="text-xl  text-gray-100 text-opacity-30 hover:text-white"
+                className="text-base  text-gray-300 hover:text-white"
                 onClick={() => handleLanguageChange("fr")}
               >
                 FR
