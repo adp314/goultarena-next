@@ -22,12 +22,12 @@ const Profil: NextPage = () => {
   );
 };
 
-// export const getStaticProps = async ({ locale }: { locale: string }) => {
-//   return {
-//     props: {
-//       ...(await serverSideTranslations(locale, ["common", "nav"])),
-//     },
-//   };
-// };
+export const getServerSideProps = async ({ locale }: { locale: string }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common", "nav"])),
+    },
+  };
+};
 
 export default Profil;

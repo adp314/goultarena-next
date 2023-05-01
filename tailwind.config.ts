@@ -4,7 +4,11 @@ export default {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      fontFamily: { KoHo: ["KoHo"] },
+      fontFamily: {
+        KoHo: ["KoHo"],
+        satoshi: ["satochi"],
+        Poppins: ["Poppins"],
+      },
     },
   },
   plugins: [],

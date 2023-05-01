@@ -5,10 +5,10 @@ export const LoginBtn = () => {
   const { t } = useTranslation(["nav"]);
   return (
     <div
-      className="flex h-11 w-44 cursor-pointer items-center justify-center rounded-full bg-orange-800 shadow-md"
+      className="flex h-11 w-max cursor-pointer items-center justify-center rounded-full bg-orange-800 px-5 font-Poppins shadow-md"
       onClick={() => void signIn()}
     >
-      <p className="text-lg uppercase">{t("nav_login")}</p>
+      <p className="text-lg ">{t("nav_login")}</p>
     </div>
   );
 };

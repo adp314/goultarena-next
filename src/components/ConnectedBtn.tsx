@@ -16,7 +16,7 @@ export const ConnectedBtn = () => {
     <>
       {session && (
         <div
-          className="relative flex h-11 w-max cursor-pointer items-center justify-end gap-3 rounded-full bg-orange-800 px-3 shadow-md"
+          className="relative flex h-11 w-max cursor-pointer items-center justify-end gap-3 rounded-full bg-orange-800 px-3 font-Poppins shadow-md"
           onClick={() => setIsOpen(!isOpen)}
         >
           <p className="text-lg uppercase">{session.user.name}</p>
@@ -45,7 +45,7 @@ export const ConnectedBtn = () => {
             <span className="h-[1px] w-full bg-white bg-opacity-10" />
             <li
               className="py-2"
-              onClick={() => router.push(`/profil/${userId}`)}
+              onClick={() => router.push(`/profile/${userId}`)}
             >
               Profil
             </li>

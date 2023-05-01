@@ -1,15 +1,17 @@
 import { type NextPage } from "next";
 import { UpperNav } from "@/layouts/UpperNav";
-import { Nav } from "@/layouts/Nav";
+import { NavHome } from "@/layouts/NavHome";
 import { Footer } from "@/layouts/Footer";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { VersusModes } from "@/components/HomeComponents/VersusModes";
 
 const Home: NextPage = () => {
   return (
     <div>
       <UpperNav />
-      <Nav />
+      <NavHome />
+      <VersusModes />
       <main className="h-screen w-full"></main>
       <Footer />
     </div>
