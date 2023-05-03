@@ -5,6 +5,8 @@ import { Footer } from "@/layouts/Footer";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { VersusModes } from "@/components/HomeComponents/VersusModes";
+import { UseFlow } from "@/components/HomeComponents/UseFlow";
+import { ElitePass } from "@/components/HomeComponents/ElitePass";
 
 const Home: NextPage = () => {
   return (
@@ -12,6 +14,8 @@ const Home: NextPage = () => {
       <UpperNav />
       <NavHome />
       <VersusModes />
+      <UseFlow />
+      <ElitePass />
       <main className="h-screen w-full"></main>
       <Footer />
     </div>
