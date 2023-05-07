@@ -1,3 +1,18 @@
 {
-  "nav_login": "Connexion"
+  "upperNav_text_a": "Utilise le code",
+  "upperNav_text_b": " pour réduire de 30% ton premier VIP pass",
+  "upperNav_span": "START23",
+  "nav_matchfinder": "Matchfinder",
+  "nav_shop": "Boutique",
+  "nav_more": "Autres",
+  "nav_login": "Connexion",
+  "nav_d_ranking": "Classement",
+  "nav_d_statistics": "Statistiques",
+  "nav_d_rules": "Règlements",
+  "navHome_h1": "Utilise ton skill, pour gagner de l'argent.",
+  "navHome_p": "Nous offrons des services de matchs de haute qualité et rapides, ainsi que des paiements sécurisés.",
+  "navHome_startButton": "Commencer",
+  "navHome_moreButton": "Savoir plus",
+  "navHome_joinDiscord": "Rejoins",
+  "navHome_joinDiscord_text": "et discute avec la communautée."
 }

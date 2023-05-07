@@ -5,7 +5,7 @@ import { ConnectedBtn } from "@/components/ConnectedBtn";
 import { TradBtn } from "@/components/TradBtn";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { NavArrowRight } from "iconoir-react";
+import { NavArrowRight, Medal1St, StatUp, Shield } from "iconoir-react";
 import dofusretro from "@/assets/images/dofus-retro-cut.png";
 import dofus from "@/assets/images/dofus.png";
 import dofustouch from "@/assets/images/dofus_touch2.jpg";
@@ -14,6 +14,7 @@ import { RiDiscordFill } from "react-icons/Ri";
 import { useWindowSize } from "@/hooks/useWindowSize";
 import { useState } from "react";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 
 interface Size {
   width: number;
@@ -22,6 +23,7 @@ interface Size {
 
 export const NavHome = () => {
   const { data: session } = useSession();
+  const { t } = useTranslation(["nav"]);
 
   const size: Size = useWindowSize();
   const [isSubNavOpen, setIsSubNavOpen] = useState<boolean>(false);
@@ -45,37 +47,51 @@ export const NavHome = () => {
           {size.width >= 1024 && (
             <div className="flex items-center gap-8 text-white">
               <ul className="flex items-center justify-start gap-6 font-Poppins text-xl ">
-                <li className="cursor-pointer hover:text-gray-200">
-                  Matchfinder
+                <li className="cursor-pointer font-medium hover:text-gray-200">
+                  {t("nav_matchfinder")}
                 </li>
-                <li className="cursor-pointer hover:text-gray-200">Shop</li>
+                <li className="cursor-pointer font-medium hover:text-gray-200">
+                  {t("nav_shop")}
+                </li>
                 <li
-                  className="relative flex cursor-pointer items-center gap-0.5 hover:text-gray-200"
+                  className="relative flex cursor-pointer  "
                   onClick={() => setIsSubNavOpen(!isSubNavOpen)}
                 >
-                  <span>More</span>
-                  <NavArrowRight
-                    strokeWidth="2.5"
-                    className={
-                      isSubNavOpen
-                        ? `mt-0.5 rotate-90 text-base duration-200 ease-in-out`
-                        : `mt-0.5 text-base`
-                    }
-                  />
+                  <span className="flex items-center gap-0.5 font-medium hover:text-gray-200">
+                    {t("nav_more")}
+                    <NavArrowRight
+                      strokeWidth="3"
+                      className={
+                        isSubNavOpen
+                          ? `mt-0.5 rotate-90 text-base duration-200 ease-in-out`
+                          : `mt-0.5 text-base`
+                      }
+                    />
+                  </span>
+
                   <ul
-                    className={` absolute top-10 ${
+                    className={` absolute -left-full top-12 ${
                       isSubNavOpen ? "visible" : "invisible"
-                    } -left-5 flex h-max w-max flex-col items-center justify-center rounded-lg bg-gray-400 bg-opacity-20 px-2 text-base  text-white`}
+                    }   flex h-max w-max flex-col items-center justify-center  rounded-lg bg-neutral-100 px-5 text-base font-medium text-neutral-800  `}
                   >
-                    <li className="py-2">Classement</li>
-                    <span className="h-[1px] w-full bg-white bg-opacity-10" />
-                    <li className="py-2">Statistiques</li>
-                    <span className="h-[1px] w-full bg-white bg-opacity-10" />
-                    <li className="py-2">Règlement</li>
+                    <li className="flex items-center gap-2 py-3 text-lg  hover:text-orange-800">
+                      <Medal1St className="text-base" />
+                      {t("nav_d_ranking")}
+                    </li>
+                    <span className="h-0.5 w-full rounded-full bg-neutral-800 bg-opacity-20" />
+                    <li className="flex items-center gap-2 py-3 text-lg hover:text-orange-800">
+                      <StatUp className="text-base " />
+                      {t("nav_d_statistics")}
+                    </li>
+                    <span className="h-0.5 w-full rounded-full bg-neutral-800 bg-opacity-20" />
+                    <li className="flex items-center gap-2 py-3 text-lg  hover:text-orange-800">
+                      <Shield className="text-base " />
+                      {t("nav_d_rules")}
+                    </li>
                   </ul>
                 </li>
               </ul>
-              <div className="mt-1">
+              <div className="mt-0.5">
                 {session ? <ConnectedBtn /> : <LoginBtn />}
               </div>
             </div>
@@ -84,33 +100,30 @@ export const NavHome = () => {
         </nav>
         <div className=" mx-auto mt-14 flex h-max w-full max-w-7xl items-center justify-between px-4">
           <div className=" mt-14 w-full font-Poppins text-white lg:mb-16 lg:mt-0 lg:w-1/2">
-            <h1 className="mb-8 text-5xl font-semibold">
-              Use your skill, for win money.
-            </h1>
-            <p className="text-2xl">
-              We provide high quality of matchs services, matchmaking faster,
-              and secure payements.
-            </p>
+            <h1 className="mb-8 text-5xl font-semibold">{t("navHome_h1")}</h1>
+            <p className="text-2xl">{t("navHome_p")}</p>
             <div className=" flex gap-4 ">
               <Link
                 href="/"
-                className="mt-8 flex h-14 w-44 items-center justify-center rounded-md bg-orange-800 text-lg hover:mt-6 "
+                className="mt-8 flex h-14 w-44 items-center justify-center rounded-md bg-orange-800 text-lg duration-200 hover:-translate-y-1"
               >
-                Let's Start
+                {t("navHome_startButton")}
               </Link>
               <Link
                 href="/"
-                className="mt-8 flex h-14 w-44 items-center justify-center rounded-md  bg-orange-50 text-lg text-orange-800 hover:mt-6"
+                className="mt-8 flex h-14 w-44 items-center justify-center rounded-md bg-orange-50 text-lg text-orange-800 duration-200 hover:-translate-y-1 "
               >
-                Learn more
+                {t("navHome_moreButton")}
               </Link>
             </div>
             <p className="mt-8 flex items-center">
-              <span className=" font-semibold uppercase">Join</span>
+              <span className=" font-semibold uppercase">
+                {t("navHome_joinDiscord")}
+              </span>
               <span className="mx-2 flex cursor-pointer items-center gap-0.5 rounded-lg bg-blue-900 px-1.5 py-1 text-lg font-semibold uppercase text-white">
                 Discord <RiDiscordFill className="text-2xl" />
               </span>
-              <span>to talk with the community and find matchs.</span>
+              <span> {t("navHome_joinDiscord_text")}</span>
             </p>
           </div>
           <div className="hidden lg:visible lg:mb-24 lg:flex lg:w-1/2 lg:flex-col lg:items-end lg:justify-center lg:gap-7">

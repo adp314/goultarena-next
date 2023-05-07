@@ -16,7 +16,7 @@ export const VersusModes = () => {
             Versus Modes Availables
           </h1>
         </div>
-        <div className="mb-14 flex w-full flex-col items-center lg:flex-row">
+        <div className="mb-14 flex w-full flex-col items-center justify-center lg:flex-row">
           <div className="mt-10 lg:mr-4">
             <div className=" rounded-lg border border-gray-300 bg-white shadow-lg lg:mt-0 lg:h-40 lg:w-56 xl:h-48 xl:w-72 ">
               <div className="flex items-center justify-center p-2">

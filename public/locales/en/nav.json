@@ -1,3 +1,18 @@
 {
-  "nav_login": "Login"
+  "upperNav_text_a": "Use code",
+  "upperNav_text_b": " for 30% off on your first VIP pass",
+  "upperNav_span": "START23",
+  "nav_matchfinder": "Matchfinder",
+  "nav_shop": "Shop",
+  "nav_more": "More",
+  "nav_login": "Connexion",
+  "nav_d_ranking": "Ranking",
+  "nav_d_statistics": "Statistics",
+  "nav_d_rules": "Rules",
+  "navHome_h1": "Use your skill, for win money.",
+  "navHome_p": "We provide high quality of matchs services, matchmaking faster, and secure payements.",
+  "navHome_startButton": "Let's Start",
+  "navHome_moreButton": "Learn more",
+  "navHome_joinDiscord": "Join",
+  "navHome_joinDiscord_text": "to talk with the community and find matchs."
 }
