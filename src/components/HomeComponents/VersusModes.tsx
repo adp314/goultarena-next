@@ -6,46 +6,54 @@ import Image from "next/image";
 
 export const VersusModes = () => {
   return (
-    <section className=" bg-neutral-100 font-Poppins">
-      <div className=" mx-auto flex h-[30rem] w-full max-w-7xl flex-col items-center justify-start px-4 pt-6 font-Poppins">
-        <div className="mb-6 flex flex-col items-center justify-center text-black">
-          <h2 className="mb-4 mt-8 text-lg font-bold uppercase text-orange-800">
-            What we offer
+    <section className="bg-neutral-100">
+      <div className="homeSection h-max ">
+        <div className="mt-14 text-center font-bold">
+          <h2 className=" mb-4 text-lg uppercase text-orange-800">
+            What versus we offer
           </h2>
-          <h1 className="mb-8 text-4xl font-bold text-neutral-800">
+          <h1 className="  text-4xl text-neutral-800">
             Versus Modes Availables
           </h1>
         </div>
-        <div className="flex items-center gap-6">
-          <div className="h-48 w-72 rounded-lg border border-gray-300 bg-white shadow-lg">
-            <div className="flex items-center justify-center ">
-              <Image src={vs4} alt="" className="mt-1 h-auto w-3/4" />
+        <div className="mb-14 flex w-full flex-col items-center lg:flex-row">
+          <div className="mt-10 lg:mr-4">
+            <div className=" rounded-lg border border-gray-300 bg-white shadow-lg lg:mt-0 lg:h-40 lg:w-56 xl:h-48 xl:w-72 ">
+              <div className="flex items-center justify-center p-2">
+                <Image src={vs4} alt="" className="pb-1" />
+              </div>
             </div>
-            <p className="mt-1.5 text-center text-xl font-bold text-neutral-800">
+            <p className="mt-3 text-center text-xl font-bold text-neutral-800">
               4 VS 4
             </p>
           </div>
-          <div className="h-48 w-72 rounded-lg border border-gray-300 bg-white shadow-lg">
-            <div className="flex items-center justify-center ">
-              <Image src={vs3} alt="" className="mt-1 h-auto w-3/4" />
+          <div className="mt-10 lg:mr-4">
+            <div className=" rounded-lg border border-gray-300 bg-white shadow-lg lg:mt-0 lg:h-40 lg:w-56 xl:h-48 xl:w-72 ">
+              <div className="flex items-center justify-center">
+                <Image src={vs3} alt="" className="pb-1" />
+              </div>
             </div>
-            <p className="mt-1.5 text-center text-xl font-bold text-neutral-800">
+            <p className="mt-3 text-center text-xl font-bold text-neutral-800">
               3 VS 3
             </p>
           </div>
-          <div className="h-48 w-72 rounded-lg border border-gray-300 bg-white shadow-lg">
-            <div className="flex items-center justify-center ">
-              <Image src={vs2} alt="" className="mt-1 h-auto w-3/4" />
+          <div className=" mt-10 lg:mr-4">
+            <div className=" rounded-lg border border-gray-300 bg-white shadow-lg lg:mt-0 lg:h-40 lg:w-56 xl:h-48 xl:w-72 ">
+              <div className="flex items-center justify-center ">
+                <Image src={vs2} alt="" className="pb-1" />
+              </div>
             </div>
-            <p className="mt-1.5 text-center text-xl font-bold text-neutral-800">
+            <p className="mt-3 text-center text-xl font-bold text-neutral-800">
               2 VS 2
             </p>
           </div>
-          <div className="h-48 w-72 rounded-lg border border-gray-300 bg-white shadow-lg">
-            <div className="flex items-center justify-center ">
-              <Image src={vs1} alt="" className="mt-1 h-auto w-3/4" />
+          <div className=" mt-10 ">
+            <div className=" rounded-lg border border-gray-300 bg-white shadow-lg lg:mt-0 lg:h-40 lg:w-56 xl:h-48 xl:w-72 ">
+              <div className="flex items-center justify-center ">
+                <Image src={vs1} alt="" className="pb-1" />
+              </div>
             </div>
-            <p className="mt-1.5 text-center text-xl font-bold text-neutral-800">
+            <p className="mt-3 text-center text-xl font-bold text-neutral-800">
               1 VS 1
             </p>
           </div>

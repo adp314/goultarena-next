@@ -9,6 +9,8 @@ import { UseFlow } from "@/components/HomeComponents/UseFlow";
 import { VipPass } from "@/components/HomeComponents/VipPass";
 import { HomeCommunity } from "@/components/HomeComponents/HomeCommunity";
 import { HomeFaq } from "@/components/HomeComponents/HomeFaq";
+import { PaymentProviders } from "@/components/HomeComponents/PaymentProviders";
+import { Reminder } from "@/components/HomeComponents/Reminder";
 
 const Home: NextPage = () => {
   return (
@@ -20,7 +22,8 @@ const Home: NextPage = () => {
       <VipPass />
       <HomeCommunity />
       <HomeFaq />
-      <main className="h-screen w-full"></main>
+      <PaymentProviders />
+      <Reminder />
       <Footer />
     </div>
   );

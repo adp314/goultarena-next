@@ -7,5 +7,36 @@
 @tailwind utilities;
 
 body {
-  @apply bg-neutral-200;
+  @apply bg-neutral-100;
+}
+
+* {
+  @apply font-Poppins;
+}
+
+@layer components {
+  .homeSection {
+    @apply mx-auto w-full max-w-7xl px-4 py-6;
+  }
+}
+
+.payment-providers::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.payment-providers::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.payment-providers::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0.25rem;
+}
+
+.payment-providers::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.payment-providers::-webkit-scrollbar-thumb:active {
+  background: rgba(0, 0, 0, 0.6);
 }

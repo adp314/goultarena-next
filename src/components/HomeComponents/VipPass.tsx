@@ -5,15 +5,15 @@ import { RxArrowRight } from "react-icons/Rx";
 
 export const VipPass = () => {
   return (
-    <section className=" bg-neutral-100 font-Poppins">
-      <div className=" mx-auto flex h-full w-full max-w-3xl flex-col items-center justify-start px-4 py-6 font-Poppins">
-        <div className="mb-8 flex flex-col items-center justify-center text-black">
-          <h1 className="my-8 flex items-center gap-3 text-center text-4xl font-bold text-orange-800">
+    <section className=" bg-neutral-100">
+      <div className=" mx-auto flex h-full w-full max-w-3xl flex-col items-center justify-start px-4 py-6">
+        <div className="mb-8 mt-14 flex flex-col items-center justify-center text-black">
+          <h1 className="mb-8 flex flex-col items-center text-center text-4xl font-bold text-orange-800 md:flex-row">
             Goultarena VIP Pass
             <Image
               src={VipPassIcon}
               alt="vip icon"
-              className="-mb-0.5 h-20 w-20"
+              className="-mb-0.5 h-20 w-20 md:ml-2"
             />
           </h1>
           <h2 className=" text-center text-lg text-neutral-800">
@@ -26,7 +26,7 @@ export const VipPass = () => {
 
         <div className="mb-10 w-full max-w-md rounded-2xl border border-neutral-200 bg-white p-10 shadow-lg">
           <div className="mb-6 flex items-center justify-start">
-            <h3 className="mr-3 text-2xl font-semibold leading-6 sm:text-3xl">
+            <h3 className="mr-3 text-2xl font-semibold sm:text-3xl">
               One Month Plan
             </h3>
             <span className="inline-block rounded-md bg-orange-800 p-2 text-sm text-white">
@@ -76,7 +76,7 @@ export const VipPass = () => {
         </div>
         <Link
           href="/"
-          className="mb-10 flex h-14 w-44 items-center justify-center rounded-full bg-orange-800 text-lg text-white hover:bg-opacity-80 "
+          className="mb-14 flex h-14 w-44 items-center justify-center rounded-full bg-orange-800 text-lg text-white hover:bg-orange-700 "
         >
           Buy Pass
         </Link>
