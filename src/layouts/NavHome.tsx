@@ -5,7 +5,14 @@ import { ConnectedBtn } from "@/components/ConnectedBtn";
 import { TradBtn } from "@/components/TradBtn";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { NavArrowRight, Medal1St, StatUp, Shield } from "iconoir-react";
+import {
+  NavArrowRight,
+  Medal1St,
+  StatUp,
+  Shield,
+  Menu,
+  Cancel,
+} from "iconoir-react";
 import dofusretro from "@/assets/images/dofus-retro-cut.png";
 import dofus from "@/assets/images/dofus.png";
 import dofustouch from "@/assets/images/dofus_touch2.jpg";
@@ -27,6 +34,7 @@ export const NavHome = () => {
 
   const size: Size = useWindowSize();
   const [isSubNavOpen, setIsSubNavOpen] = useState<boolean>(false);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
   return (
     <div className={`relative h-[700px] w-full shadow-lg`}>
       <Image
@@ -35,7 +43,7 @@ export const NavHome = () => {
         className="absolute -z-10 h-full w-full object-cover object-center"
       />
       <div className="h-full w-full bg-black bg-opacity-60 ">
-        <nav className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 pt-8">
+        <nav className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 pt-8">
           <div className="flex items-center justify-start text-white">
             <div className="h-auto w-20">
               <Image src={goultarenalogo} alt="GoultarenaLogo" />
@@ -96,7 +104,33 @@ export const NavHome = () => {
               </div>
             </div>
           )}
-          {size.width < 1024 && <></>}
+          {size.width < 1024 && (
+            <div
+              className="relative cursor-pointer text-white"
+              onClick={() => {
+                setIsMobileNavOpen(!isMobileNavOpen);
+              }}
+            >
+              {isMobileNavOpen ? (
+                <Cancel strokeWidth={2} className="text-2xl" />
+              ) : (
+                <Menu strokeWidth={2} className="text-2xl" />
+              )}
+
+              <div
+                className={` ${
+                  isMobileNavOpen ? "visible" : "hidden"
+                } absolute -left-16 h-20 w-max rounded-md bg-neutral-100 px-6 text-neutral-800 `}
+              >
+                <div className="w-full">
+                  {session ? <p>Connected</p> : <p>Login</p>}
+                </div>
+                <ul>
+                  <li></li>
+                </ul>
+              </div>
+            </div>
+          )}
         </nav>
         <div className=" mx-auto mt-14 flex h-max w-full max-w-7xl items-center justify-between px-4">
           <div className=" mt-14 w-full font-Poppins text-white lg:mb-16 lg:mt-0 lg:w-1/2">
