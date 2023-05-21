@@ -14,7 +14,7 @@ import { Reminder } from "@/components/HomeComponents/Reminder";
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <>
       <UpperNav />
       <NavHome />
       <VersusModes />
@@ -25,7 +25,7 @@ const Home: NextPage = () => {
       <PaymentProviders />
       <Reminder />
       <Footer />
-    </div>
+    </>
   );
 };
 

@@ -59,6 +59,9 @@ export const NavHome = () => {
                   {t("nav_matchfinder")}
                 </li>
                 <li className="cursor-pointer font-medium hover:text-gray-200">
+                  {t("nav_tournaments")}
+                </li>
+                <li className="cursor-pointer font-medium hover:text-gray-200">
                   {t("nav_shop")}
                 </li>
                 <li
@@ -169,7 +172,6 @@ export const NavHome = () => {
                   className="h-full w-full rounded-lg border-2 object-cover"
                 />
               </div>
-
               <div className="lg:h-48 lg:w-64 xl:h-56 xl:w-80">
                 <Image
                   src={dofus}
