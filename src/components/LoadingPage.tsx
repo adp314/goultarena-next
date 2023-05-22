@@ -3,11 +3,11 @@ import Image from "next/image";
 
 export const LoadingPage = () => {
   return (
-    <div className="absolute left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-gradient-to-b from-neutral-100 via-neutral-200 to-neutral-200">
+    <div className="absolute left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-gradient-to-b from-neutral-200 via-neutral-400 to-neutral-400">
       <Image
         src={goultarenalogo}
         alt="goultarenalogo"
-        className="h-32 w-auto"
+        className="mb-10 h-40 w-auto"
       />
     </div>
   );
