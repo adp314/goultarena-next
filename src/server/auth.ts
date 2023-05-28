@@ -33,10 +33,9 @@ declare module "next-auth" {
     } & DefaultSession["user"];
   }
 
-  // interface User {
-  //   // ...other properties
-  //   // role: UserRole;
-  // }
+  interface User {
+    username: string;
+  }
 }
 
 /**
@@ -45,19 +44,30 @@ declare module "next-auth" {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
+debug: env.NODE_ENV !== "production",
+events: {
+  async signIn({user}){
+
+    const newUsername = generateSignInUserName();
+    if(!user.username){
+      await prisma.user.update({
+        where: {
+          id: user.id,
+  
+        },
+        data:{
+          username: newUsername;
+        }
+      })
+    }
+   
+  } 
+},
   callbacks: {
     session({ session, user }) {
       if (session.user) {
         session.user.id = user.id;
         // session.user.role = user.role; <-- put other properties on the session here
-        if (!user.username) {
-          session.user.username = generateSignInUserName();
-          // Update the user in the database with the generated username
-          prisma.user.update({
-            where: { id: user.id },
-            data: { username: session.user.username },
-          });
-        }
       }
       return session;
     },
