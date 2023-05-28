@@ -4,6 +4,7 @@ import coins from "@/assets/images/icons8-coins-94.png";
 import { LoadingPage } from "../LoadingPage";
 import { useState } from "react";
 import Image from "next/image";
+import { ConnectedDropdown } from "./ConnectedDropdown";
 
 export const AuthNav = () => {
   const { data: session } = useSession();
@@ -25,13 +26,19 @@ export const AuthNav = () => {
             <span className="text-md ml-2 font-medium">
               {session?.user.name}
             </span>
-            <Image
-              src={session?.user.image as string}
-              alt="test"
-              height={40}
-              width={40}
-              className="ml-3 rounded-md border-[1px] border-neutral-400 shadow-md"
-            />
+            <div className="relative ml-3">
+              <Image
+                src={session?.user.image as string}
+                alt="test"
+                height={40}
+                width={40}
+                className="rounded-md border-[1px] border-neutral-400 shadow-md"
+                onClick={() => {
+                  setIsOpen(!isOpen);
+                }}
+              />
+              {isOpen ? <ConnectedDropdown /> : <></>}
+            </div>
           </div>
         </div>
       ) : (

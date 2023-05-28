@@ -8,6 +8,7 @@ import DiscordProvider from "next-auth/providers/discord";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { env } from "@/env.mjs";
 import { prisma } from "@/server/db";
+import { generateUsername } from "unique-username-generator";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -15,6 +16,14 @@ import { prisma } from "@/server/db";
  *
  * @see https://next-auth.js.org/getting-started/typescript#module-augmentation
  */
+
+const generateSignInUserName = () => {
+  const userNameGenerate = generateUsername("", 0, 10);
+  return `${userNameGenerate}#${Math.floor(Math.random() * 10)}${Math.floor(
+    Math.random() * 10
+  )}${Math.floor(Math.random() * 10)}`;
+};
+
 declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
@@ -41,6 +50,14 @@ export const authOptions: NextAuthOptions = {
       if (session.user) {
         session.user.id = user.id;
         // session.user.role = user.role; <-- put other properties on the session here
+        if (!user.username) {
+          session.user.username = generateSignInUserName();
+          // Update the user in the database with the generated username
+          prisma.user.update({
+            where: { id: user.id },
+            data: { username: session.user.username },
+          });
+        }
       }
       return session;
     },
