@@ -16,7 +16,7 @@ const ProfileEdit: NextPage = () => {
       </div>
       <div className="ml-64">
         <AuthNav />
-        <div className="mt-8 flex">
+        <div className="mt-8 flex w-full justify-center">
           <ProfileOverview />
           <ProfileInfos />
         </div>

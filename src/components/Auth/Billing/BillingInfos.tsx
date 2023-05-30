@@ -2,13 +2,16 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { TextInput } from "flowbite-react";
 import { UserData } from "@/types";
+import Select from "react-select";
+import { countries } from "countries-list";
 
 type Inputs = {
-  characterLink: string;
-  username: string;
-  discord: string;
-  twitter: string;
-  youtube: string;
+  firstName: string;
+  lastName: string;
+  country: string;
+  zipCode: string;
+  street: string;
+  number: string;
 };
 
 const getProfileUserData = () => {
@@ -21,9 +24,15 @@ const getProfileUserData = () => {
   });
 };
 
-export const ProfileInfos = () => {
+export const BillingInfos = () => {
   const { data: profileUserData } = getProfileUserData();
   const queryClient = useQueryClient();
+
+  const countryOptions = Object.entries(countries).map(([code, country]) => ({
+    value: code,
+    label: country.name,
+  }));
+
   const {
     register,
     handleSubmit,
@@ -72,92 +81,94 @@ export const ProfileInfos = () => {
               <p>Infos</p>
               <div className="mt-1 h-0.5 w-full bg-orange-700" />
             </li>
-
-            <li className="ml-6 text-neutral-400">Stats</li>
           </ul>
 
           <div className="mt-8  w-full rounded-lg bg-white shadow-md">
             <div className="flex items-center p-6">
-              <h2 className="font-medium">Edit Account Settings</h2>
+              <h2 className="font-medium">Billing Informations</h2>
             </div>
 
             <div className="h-[1px] w-full bg-neutral-200"></div>
             <form onSubmit={handleSubmit(onSubmit)} className="px-8 py-10">
               <div className=" flex w-full items-center justify-between">
-                <label htmlFor="character" className="text-sm font-medium">
-                  Character
+                <label htmlFor="firstName" className="text-sm font-medium">
+                  First name
                 </label>
                 <TextInput
-                  id="character"
-                  placeholder="Character page link"
+                  id="firstName"
+                  placeholder="Kévin"
                   shadow
                   type="text"
                   className="w-3/4"
-                  defaultValue={profileUserData.characterLink}
-                  {...register("characterLink")}
+                  defaultValue={profileUserData.firstName}
+                  {...register("firstName", { required: true })}
                 />
               </div>
-              <div className=" mt-8 flex w-full items-center justify-between">
-                <label htmlFor="username" className="text-sm font-medium">
-                  Username
-                </label>
-                <TextInput
-                  id="username"
-                  placeholder="Username#1234"
-                  shadow
-                  type="text"
-                  className="w-3/4"
-                  defaultValue={profileUserData.username}
-                  {...register("username", { required: true })}
-                />
-              </div>
-              {errors.username && (
+              {errors.firstName && (
                 <p className="ml-[26%] mt-1.5 text-xs text-orange-700">
-                  username is required
+                  first name is required
                 </p>
               )}
-              <div className="mt-8 h-[1px] w-full bg-neutral-200" />
               <div className=" mt-8 flex w-full items-center justify-between">
-                <label htmlFor="discord" className="text-sm font-medium">
-                  Discord
+                <label htmlFor="lastName" className="text-sm font-medium">
+                  Last name
                 </label>
                 <TextInput
-                  id="discord"
-                  placeholder="Username#1234"
+                  id="lastName"
+                  placeholder="Durant"
                   shadow
                   type="text"
                   className="w-3/4"
-                  defaultValue={profileUserData.discord}
-                  {...register("discord")}
+                  defaultValue={profileUserData.lastName}
+                  {...register("lastName", { required: true })}
                 />
               </div>
+              {errors.lastName && (
+                <p className="ml-[26%] mt-1.5 text-xs text-orange-700">
+                  last name is required
+                </p>
+              )}
               <div className=" mt-8 flex w-full items-center justify-between">
-                <label htmlFor="twitter" className="text-sm font-medium">
-                  Twitter
+                <label htmlFor="country" className="text-sm font-medium">
+                  Country
                 </label>
-                <TextInput
-                  id="twitter"
-                  placeholder="@Username"
-                  shadow
-                  type="text"
-                  className="w-3/4"
-                  defaultValue={profileUserData.twitter}
-                  {...register("twitter")}
+                <Select
+                  id="country"
+                  name="country"
+                  options={countryOptions}
+                  className="select-billing"
+                  {...(register("country"), { required: true })}
                 />
               </div>
-              <div className=" my-8 flex w-full items-center justify-between">
-                <label htmlFor="youtube" className="text-sm font-medium">
-                  Youtube
-                </label>
-                <TextInput
-                  id="youtube"
-                  placeholder="@MyChannel"
-                  shadow
-                  type="text"
-                  className="w-3/4"
-                  defaultValue={profileUserData.youtube}
-                  {...register("youtube")}
-                />
+              <div className="flex items-center  py-8">
+                <div className=" flex w-full items-center justify-between ">
+                  <label htmlFor="street" className="text-sm font-medium">
+                    Street address
+                  </label>
+                  <TextInput
+                    id="street"
+                    placeholder="Churchil Street"
+                    shadow
+                    type="text"
+                    className="w-3/4"
+                    defaultValue={profileUserData.street}
+                    {...register("street")}
+                  />
+                </div>
+                <div className=" flex w-full items-center justify-between ">
+                  <label htmlFor="number" className="text-sm font-medium">
+                    N°
+                  </label>
+                  <TextInput
+                    id="number"
+                    placeholder="14"
+                    shadow
+                    type="text"
+                    className="w-3/4"
+                    defaultValue={profileUserData.number}
+                    {...register("number")}
+                  />
+                </div>
               </div>
               <div className="h-[1px] w-full bg-neutral-200" />
               <button

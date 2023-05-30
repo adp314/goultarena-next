@@ -58,6 +58,11 @@ model User {
     discord       String?
     twitter       String?
     youtube       String?
+    firstName     String?
+    lastName      String?
+    country       String?
+    street        String?
+    number        String?
     accounts      Account[]
     sessions      Session[]
 }

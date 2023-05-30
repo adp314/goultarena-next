@@ -9,4 +9,9 @@ export interface UserData {
   discord: string;
   twitter: string;
   youtube: string;
+  firstName: string;
+  lastName: string;
+  country: string;
+  street: string;
+  number: string;
 }
