@@ -8,10 +8,15 @@ import { countries } from "countries-list";
 type Inputs = {
   firstName: string;
   lastName: string;
-  country: string;
+  country: countryType | null;
   zipCode: string;
   street: string;
   number: string;
+};
+
+type countryType = {
+  value: string;
+  label: string;
 };
 
 const getProfileUserData = () => {
@@ -28,20 +33,23 @@ export const BillingInfos = () => {
   const { data: profileUserData } = getProfileUserData();
   const queryClient = useQueryClient();
 
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
+
+  const selectedCountry = watch("country");
   const countryOptions = Object.entries(countries).map(([code, country]) => ({
     value: code,
     label: country.name,
   }));
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Inputs>();
-
-  const updateProfileUserMutation = useMutation(
+  const updateBillingMutation = useMutation(
     async (data: Inputs) => {
-      const response = await fetch("/api/user/update-profile-infos", {
+      const response = await fetch("/api/user/update-billing-infos", {
         method: "PUT",
         body: JSON.stringify(data),
         headers: {
@@ -65,7 +73,7 @@ export const BillingInfos = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
-      const response = await updateProfileUserMutation.mutateAsync(data);
+      const response = await updateBillingMutation.mutateAsync(data);
       console.log(response);
     } catch (error) {
       console.error(error);
@@ -76,13 +84,6 @@ export const BillingInfos = () => {
     <div className="ml-14 w-full max-w-3xl">
       {profileUserData && (
         <>
-          <ul className="flex text-lg font-medium text-orange-700">
-            <li>
-              <p>Infos</p>
-              <div className="mt-1 h-0.5 w-full bg-orange-700" />
-            </li>
-          </ul>
-
           <div className="mt-8  w-full rounded-lg bg-white shadow-md">
             <div className="flex items-center p-6">
               <h2 className="font-medium">Billing Informations</h2>
@@ -137,46 +138,78 @@ export const BillingInfos = () => {
                   name="country"
                   options={countryOptions}
                   className="select-billing"
+                  value={selectedCountry}
+                  onChange={(selectedOption) =>
+                    setValue("country", selectedOption)
+                  }
                   {...(register("country"), { required: true })}
                 />
               </div>
-              <div className="flex items-center  py-8">
-                <div className=" flex w-full items-center justify-between ">
-                  <label htmlFor="street" className="text-sm font-medium">
-                    Street address
-                  </label>
-                  <TextInput
-                    id="street"
-                    placeholder="Churchil Street"
-                    shadow
-                    type="text"
-                    className="w-3/4"
-                    defaultValue={profileUserData.street}
-                    {...register("street")}
-                  />
-                </div>
-                <div className=" flex w-full items-center justify-between ">
-                  <label htmlFor="number" className="text-sm font-medium">
-                    N°
-                  </label>
-                  <TextInput
-                    id="number"
-                    placeholder="14"
-                    shadow
-                    type="text"
-                    className="w-3/4"
-                    defaultValue={profileUserData.number}
-                    {...register("number")}
-                  />
-                </div>
+              {errors.country && (
+                <p className="ml-[26%] mt-1.5 text-xs text-orange-700">
+                  country is required
+                </p>
+              )}
+
+              <div className=" mt-8 flex w-full items-center justify-between ">
+                <label htmlFor="street" className="text-sm font-medium">
+                  Street address
+                </label>
+                <TextInput
+                  id="street"
+                  placeholder="Brakmar Street"
+                  shadow
+                  type="text"
+                  className="w-3/4"
+                  defaultValue={profileUserData.street}
+                  {...(register("street"), { required: true })}
+                />
               </div>
-              <div className="h-[1px] w-full bg-neutral-200" />
+              {errors.street && (
+                <p className="ml-[26%] mt-1.5 text-xs text-orange-700">
+                  street address is required
+                </p>
+              )}
+              <div className=" mt-8 flex w-full items-center justify-between ">
+                <label htmlFor="number" className="text-sm font-medium">
+                  Street number
+                </label>
+                <TextInput
+                  id="number"
+                  placeholder="14"
+                  shadow
+                  type="text"
+                  className="w-3/4"
+                  defaultValue={profileUserData.number}
+                  {...(register("number"), { required: true })}
+                />
+              </div>
+              {errors.number && (
+                <p className="ml-[26%] mt-1.5 text-xs text-orange-700">
+                  street number is required
+                </p>
+              )}
+              <div className="mt-8 flex w-full items-center justify-between">
+                <label htmlFor="email" className="text-sm font-medium">
+                  Email
+                </label>
+                <TextInput
+                  id="email"
+                  placeholder="example@example.com"
+                  shadow
+                  type="email"
+                  className="w-3/4"
+                  value={profileUserData.email}
+                  disabled
+                />
+              </div>
+              <div className="mt-10 h-[1px] w-full bg-neutral-200" />
               <button
                 type="submit"
-                disabled={updateProfileUserMutation.isLoading}
+                disabled={updateBillingMutation.isLoading}
                 className="mt-8 flex w-40 items-center justify-center rounded-lg bg-orange-700 py-3.5 text-sm font-medium text-white"
               >
-                {updateProfileUserMutation.isLoading
+                {updateBillingMutation.isLoading
                   ? "Loading..."
                   : " Save Changes"}
               </button>
