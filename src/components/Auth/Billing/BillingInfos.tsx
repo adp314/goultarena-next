@@ -1,22 +1,17 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { TextInput } from "flowbite-react";
+import { TextInput, Select } from "flowbite-react";
 import { UserData } from "@/types";
-import Select from "react-select";
+import { useState, useEffect } from "react";
 import { countries } from "countries-list";
 
 type Inputs = {
   firstName: string;
   lastName: string;
-  country: countryType | null;
+  country: string | null;
   zipCode: string;
   street: string;
   number: string;
-};
-
-type countryType = {
-  value: string;
-  label: string;
 };
 
 const getProfileUserData = () => {
@@ -37,15 +32,28 @@ export const BillingInfos = () => {
     register,
     handleSubmit,
     setValue,
-    watch,
     formState: { errors },
   } = useForm<Inputs>();
 
-  const selectedCountry = watch("country");
+  useEffect(() => {
+    if (profileUserData) {
+      setValue("firstName", profileUserData.firstName);
+      setValue("lastName", profileUserData.lastName);
+      setValue("country", profileUserData.country);
+      setValue("zipCode", profileUserData.zipCode);
+      setValue("street", profileUserData.street);
+      setValue("number", profileUserData.number);
+    }
+  }, [profileUserData, setValue]);
+
   const countryOptions = Object.entries(countries).map(([code, country]) => ({
     value: code,
     label: country.name,
   }));
+
+  const handleCountryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setValue("country", event.target.value);
+  };
 
   const updateBillingMutation = useMutation(
     async (data: Inputs) => {
@@ -72,6 +80,7 @@ export const BillingInfos = () => {
   );
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    console.log(data);
     try {
       const response = await updateBillingMutation.mutateAsync(data);
       console.log(response);
@@ -97,11 +106,9 @@ export const BillingInfos = () => {
                 </label>
                 <TextInput
                   id="firstName"
-                  placeholder="Kévin"
                   shadow
                   type="text"
                   className="w-3/4"
-                  defaultValue={profileUserData.firstName}
                   {...register("firstName", { required: true })}
                 />
               </div>
@@ -116,11 +123,9 @@ export const BillingInfos = () => {
                 </label>
                 <TextInput
                   id="lastName"
-                  placeholder="Durant"
                   shadow
                   type="text"
                   className="w-3/4"
-                  defaultValue={profileUserData.lastName}
                   {...register("lastName", { required: true })}
                 />
               </div>
@@ -135,15 +140,20 @@ export const BillingInfos = () => {
                 </label>
                 <Select
                   id="country"
-                  name="country"
-                  options={countryOptions}
-                  className="select-billing"
-                  value={selectedCountry}
-                  onChange={(selectedOption) =>
-                    setValue("country", selectedOption)
-                  }
-                  {...(register("country"), { required: true })}
-                />
+                  className="w-3/4"
+                  defaultValue={profileUserData.country}
+                  {...register("country")}
+                  onChange={handleCountryChange}
+                >
+                  <option value="" disabled>
+                    Select a country
+                  </option>
+                  {countryOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </Select>
               </div>
               {errors.country && (
                 <p className="ml-[26%] mt-1.5 text-xs text-orange-700">
@@ -157,17 +167,34 @@ export const BillingInfos = () => {
                 </label>
                 <TextInput
                   id="street"
-                  placeholder="Brakmar Street"
                   shadow
                   type="text"
                   className="w-3/4"
-                  defaultValue={profileUserData.street}
-                  {...(register("street"), { required: true })}
+                  {...register("street", { required: true })}
                 />
               </div>
               {errors.street && (
                 <p className="ml-[26%] mt-1.5 text-xs text-orange-700">
                   street address is required
+                </p>
+              )}
+              <div className=" mt-8 flex w-full items-center justify-between">
+                <label htmlFor="zipcode" className="text-sm font-medium">
+                  Zip Code
+                </label>
+                <TextInput
+                  id="number"
+                  shadow
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  className="w-3/4"
+                  {...register("zipCode", { required: true })}
+                />
+              </div>
+              {errors.lastName && (
+                <p className="ml-[26%] mt-1.5 text-xs text-orange-700">
+                  last name is required
                 </p>
               )}
               <div className=" mt-8 flex w-full items-center justify-between ">
@@ -176,12 +203,12 @@ export const BillingInfos = () => {
                 </label>
                 <TextInput
                   id="number"
-                  placeholder="14"
                   shadow
                   type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
                   className="w-3/4"
-                  defaultValue={profileUserData.number}
-                  {...(register("number"), { required: true })}
+                  {...register("number", { required: true })}
                 />
               </div>
               {errors.number && (

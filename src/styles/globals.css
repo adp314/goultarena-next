@@ -18,13 +18,13 @@ body {
   }
 }
 
-.select-billing {
-  @apply w-3/4 rounded-lg bg-[#F9FAFB] shadow-sm;
+/* .select-billing {
+  @apply w-3/4 rounded-lg bg-[#F9FAFB] text-black shadow-sm;
 }
 
 .select-billing div {
-  @apply rounded-lg border-[#D1D5DB] bg-[#F9FAFB];
-}
+  @apply rounded-lg border-[#D1D5DB] bg-[#F9FAFB]  text-black;
+} */
 
 .payment-providers::-webkit-scrollbar {
   width: 0.5rem;

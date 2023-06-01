@@ -14,4 +14,5 @@ export interface UserData {
   country: string;
   street: string;
   number: string;
+  zipCode: string;
 }

@@ -63,6 +63,7 @@ model User {
     country       String?
     street        String?
     number        String?
+    zipCode       String?
     accounts      Account[]
     sessions      Session[]
 }
