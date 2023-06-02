@@ -15,4 +15,9 @@ export interface UserData {
   street: string;
   number: string;
   zipCode: string;
+  totalMatchs: number;
+  totalWins: number;
+  totalDraws: number;
+  totalLooses: number;
+  wallet: number;
 }

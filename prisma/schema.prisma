@@ -64,6 +64,13 @@ model User {
     street        String?
     number        String?
     zipCode       String?
+    totalMatchs   Int       @default(0)
+    totalWins     Int       @default(0)
+    totalDraws    Int       @default(0)
+    totalLooses   Int       @default(0)
+    wallet        Float     @default(0)
+    totalEarnings Float     @default(0)
+    totalSpends   Float     @default(0)
     accounts      Account[]
     sessions      Session[]
 }
