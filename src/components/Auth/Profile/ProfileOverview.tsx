@@ -6,52 +6,16 @@ import Image from "next/image";
 import coins from "@/assets/images/icons8-coins-94.png";
 import perso from "@/assets/images/perso.png";
 import { LoadingPage } from "@/components/LoadingPage";
-
-type SkinImage = {
-  src: string;
-  image: string;
-};
-
-const getProfileUserData = () => {
-  return useQuery(["profileUserData"], async () => {
-    const response: Response = await fetch("/api/user/get-profile-infos");
-    const data: UserData = await response.json();
-    return data;
-  });
-};
-
-const getCharacter = (profileUserData: UserData | undefined) => {
-  return useQuery(
-    ["characterData"],
-    async () => {
-      if (profileUserData) {
-        const nibApiRes = await fetch(
-          "https://dofuspp.nib.gg/api/skin?url=" +
-            profileUserData.characterLink,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            method: "GET",
-          }
-        );
-        const nibApiResJSON = (await nibApiRes.json()) as SkinImage;
-        return nibApiResJSON;
-      }
-    },
-    {
-      enabled: Boolean(profileUserData),
-    }
-  );
-};
+import { useGetCharacter } from "@/hooks/ReactQuery/useGetCharacter";
+import { useGetUserData } from "@/hooks/ReactQuery/useGetUserData";
 
 export const ProfileOverview = () => {
-  const { data: profileUserData } = getProfileUserData();
-  const { data: character } = getCharacter(profileUserData);
+  const { data: userData } = useGetUserData();
+  const { data: character } = useGetCharacter(userData);
 
   return (
     <>
-      {profileUserData ? (
+      {userData ? (
         <div className="h-max w-80 rounded-lg bg-white shadow-md">
           <div className="px-6">
             <div className="flex items-center justify-center p-6">
@@ -66,7 +30,7 @@ export const ProfileOverview = () => {
             </div>
 
             <span className=" flex justify-center text-lg font-semibold uppercase">
-              {profileUserData.username}
+              {userData.username}
             </span>
             <div className="mt-6 h-[1px] w-full bg-neutral-200" />
           </div>

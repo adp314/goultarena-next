@@ -1,5 +1,6 @@
 import goultarenalogo from "@/assets/images/goultarenalogo.png";
 import navweb from "@/assets/images/bg-iop-mob.jpg";
+import { useRouter } from "next/router";
 import { LoginBtn } from "@/components/LoginBtn";
 import { ConnectedBtn } from "@/components/ConnectedBtn";
 import { TradBtn } from "@/components/TradBtn";
@@ -31,7 +32,7 @@ interface Size {
 export const NavHome = () => {
   const { data: session } = useSession();
   const { t } = useTranslation(["nav"]);
-
+  const router = useRouter();
   const size: Size = useWindowSize();
   const [isSubNavOpen, setIsSubNavOpen] = useState<boolean>(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
@@ -45,7 +46,7 @@ export const NavHome = () => {
       <div className="h-full w-full bg-black bg-opacity-60 ">
         <nav className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 pt-8">
           <div className="flex items-center justify-start text-white">
-            <div className="h-auto w-20">
+            <div className="h-auto w-20" onClick={() => router.push("/home")}>
               <Image src={goultarenalogo} alt="GoultarenaLogo" />
             </div>
             <div className="ml-1">
@@ -61,7 +62,10 @@ export const NavHome = () => {
                 <li className="cursor-pointer font-medium hover:text-gray-200">
                   {t("nav_tournaments")}
                 </li>
-                <li className="cursor-pointer font-medium hover:text-gray-200">
+                <li
+                  className="cursor-pointer font-medium hover:text-gray-200"
+                  onClick={() => router.push("/shop")}
+                >
                   {t("nav_shop")}
                 </li>
                 <li

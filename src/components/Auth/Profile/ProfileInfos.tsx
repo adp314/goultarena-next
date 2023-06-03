@@ -1,34 +1,38 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useQuery, useMutation, useQueryClient } from "react-query";
-import { TextInput } from "flowbite-react";
-import { UserData } from "@/types";
+import { useMutation, useQueryClient } from "react-query";
+import { TextInput, Textarea } from "flowbite-react";
+import { useGetUserData } from "@/hooks/ReactQuery/useGetUserData";
+import { useEffect } from "react";
 
 type Inputs = {
   characterLink: string;
+  description: string;
   username: string;
   discord: string;
   twitter: string;
   youtube: string;
 };
 
-const getProfileUserData = () => {
-  return useQuery(["profileUserData"], async () => {
-    const response: Response = await fetch("/api/user/get-profile-infos", {
-      method: "GET",
-    });
-    const data: UserData = await response.json();
-    return data;
-  });
-};
-
 export const ProfileInfos = () => {
-  const { data: profileUserData } = getProfileUserData();
+  const { data: userData } = useGetUserData();
   const queryClient = useQueryClient();
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<Inputs>();
+
+  useEffect(() => {
+    if (userData) {
+      setValue("characterLink", userData.characterLink);
+      setValue("description", userData.lastName);
+      setValue("username", userData.username);
+      setValue("discord", userData.discord);
+      setValue("twitter", userData.twitter);
+      setValue("youtube", userData.youtube);
+    }
+  }, [userData, setValue]);
 
   const updateProfileUserMutation = useMutation(
     async (data: Inputs) => {
@@ -65,7 +69,7 @@ export const ProfileInfos = () => {
 
   return (
     <div className="ml-14 w-full max-w-3xl">
-      {profileUserData && (
+      {userData && (
         <>
           <ul className="flex text-lg font-medium text-orange-700">
             <li>
@@ -93,7 +97,6 @@ export const ProfileInfos = () => {
                   shadow
                   type="text"
                   className="w-3/4"
-                  defaultValue={profileUserData.characterLink}
                   {...register("characterLink")}
                 />
               </div>
@@ -107,7 +110,6 @@ export const ProfileInfos = () => {
                   shadow
                   type="text"
                   className="w-3/4"
-                  defaultValue={profileUserData.username}
                   {...register("username", { required: true })}
                 />
               </div>
@@ -116,6 +118,19 @@ export const ProfileInfos = () => {
                   username is required
                 </p>
               )}
+              <div className=" mt-8 flex w-full items-center justify-between">
+                <label htmlFor="description" className="text-sm font-medium">
+                  Description
+                </label>
+                <div className="w-3/4">
+                  <Textarea
+                    id="description"
+                    placeholder="Something about you here ..."
+                    shadow
+                    {...register("description")}
+                  />
+                </div>
+              </div>
               <div className="mt-8 h-[1px] w-full bg-neutral-200" />
               <div className=" mt-8 flex w-full items-center justify-between">
                 <label htmlFor="discord" className="text-sm font-medium">
@@ -127,7 +142,6 @@ export const ProfileInfos = () => {
                   shadow
                   type="text"
                   className="w-3/4"
-                  defaultValue={profileUserData.discord}
                   {...register("discord")}
                 />
               </div>
@@ -141,7 +155,6 @@ export const ProfileInfos = () => {
                   shadow
                   type="text"
                   className="w-3/4"
-                  defaultValue={profileUserData.twitter}
                   {...register("twitter")}
                 />
               </div>
@@ -155,7 +168,6 @@ export const ProfileInfos = () => {
                   shadow
                   type="text"
                   className="w-3/4"
-                  defaultValue={profileUserData.youtube}
                   {...register("youtube")}
                 />
               </div>

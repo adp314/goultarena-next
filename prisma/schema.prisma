@@ -55,6 +55,7 @@ model User {
     emailVerified DateTime?
     image         String?
     characterLink String?
+    description   String?
     discord       String?
     twitter       String?
     youtube       String?

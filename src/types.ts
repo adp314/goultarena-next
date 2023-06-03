@@ -6,6 +6,7 @@ export interface UserData {
   emailVerified: Date;
   image: string;
   characterLink: string;
+  description: String;
   discord: string;
   twitter: string;
   youtube: string;

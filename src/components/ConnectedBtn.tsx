@@ -10,10 +10,10 @@ export const ConnectedBtn = () => {
     <>
       {session && (
         <div
-          className="relative flex h-11 w-max cursor-pointer items-center justify-end gap-3 rounded-full bg-orange-800 px-3 font-Poppins shadow-md"
+          className="relative flex h-11 w-max cursor-pointer items-center justify-end gap-3 rounded-full bg-orange-800 px-4 font-Poppins shadow-md"
           onClick={() => router.push(`/dashboard`)}
         >
-          <p className="text-lg uppercase">{session.user.name}</p>
+          <p className="text-lg ">{session.user.username}</p>
           <Image
             src={session.user.image as string}
             alt="test"

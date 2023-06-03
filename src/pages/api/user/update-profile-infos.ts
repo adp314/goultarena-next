@@ -5,6 +5,7 @@ import { z } from "zod";
 
 const UserFormInfos = z.object({
   characterLink: z.string().optional(),
+  description: z.string().optional(),
   username: z.string(),
   discord: z.string().optional(),
   twitter: z.string().optional(),
@@ -24,7 +25,7 @@ export default async function PUT(req: NextApiRequest, res: NextApiResponse) {
   }
 
   try {
-    const { characterLink, username, discord, twitter, youtube } =
+    const { characterLink, username, description, discord, twitter, youtube } =
       UserFormInfos.parse(req.body);
 
     const userData = await prisma.user.update({
@@ -34,6 +35,7 @@ export default async function PUT(req: NextApiRequest, res: NextApiResponse) {
       data: {
         characterLink,
         username,
+        description,
         discord,
         twitter,
         youtube,
