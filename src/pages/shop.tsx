@@ -11,7 +11,8 @@ import { Nav } from "@/layouts/Nav";
 import { ProductsChoice } from "@/components/shop/ProductsChoice";
 import navweb from "@/assets/images/bg-iop-mob.jpg";
 
-const Home: NextPage = () => {
+
+const Shop: NextPage = () => {
   return (
     <>
       <UpperNav />
@@ -41,4 +42,4 @@ export const getStaticProps = async ({ locale }: { locale: string }) => {
   };
 };
 
-export default Home;
+export default Shop;

@@ -2,6 +2,7 @@ import advanced_coins from "@/assets/images/icons8-coins-94.png";
 import basic_coins from "@/assets/images/icons8-dollar-coin-96.png";
 import cash from "@/assets/images/icons8-cash-96.png";
 import { ProductCard } from "./ProductCard";
+import { loadStripe } from "@stripe/stripe-js";
 
 export const ProductsChoice = () => {
   return (
