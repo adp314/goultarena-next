@@ -2,7 +2,6 @@ import advanced_coins from "@/assets/images/icons8-coins-94.png";
 import basic_coins from "@/assets/images/icons8-dollar-coin-96.png";
 import cash from "@/assets/images/icons8-cash-96.png";
 import { ProductCard } from "./ProductCard";
-import { loadStripe } from "@stripe/stripe-js";
 
 export const ProductsChoice = () => {
   return (
@@ -11,22 +10,25 @@ export const ProductsChoice = () => {
         <ProductCard
           src={basic_coins}
           alt="basic_pack_img"
-          packName="Basic"
-          packPrice="4,99 €"
+          packName="5 tokens"
+          packPrice="5,99 €"
+          product="price_1NFQIRLuqB4HccBmkWxI36Bs"
           packDescription="Perfect for start your first experience !"
         />
         <ProductCard
           src={advanced_coins}
           alt="advanced_pack_img"
-          packName="Advanced"
-          packPrice="9,99 €"
+          packName="10 tokens"
+          packPrice="10,49 €"
+          product="price_1NFQKRLuqB4HccBmDTAGJY0o"
           packDescription="Your are confident, take benefits !"
         />
         <ProductCard
           src={cash}
           alt="confirmed_pack_img"
-          packName="Confirmed"
+          packName="20 tokens"
           packPrice="19,99 €"
+          product="price_1NFQL2LuqB4HccBm7a1ZU1k8"
           packDescription="
           This pack is for confirmed players, win 1 €."
         />

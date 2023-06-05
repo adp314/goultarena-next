@@ -15,6 +15,7 @@
     "@radix-ui/react-accordion": "^1.1.1",
     "@stripe/stripe-js": "^1.54.0",
     "@types/stripe": "^8.0.417",
+    "cors": "^2.8.5",
     "countries-list": "^2.6.1",
     "daisyui": "^2.51.5",
     "flowbite": "^1.6.5",
@@ -22,6 +23,7 @@
     "iconoir-react": "^6.5.0",
     "next": "^13.4.4",
     "next-auth": "^4.22.1",
+    "next-connect": "^1.0.0",
     "next-i18n": "^0.0.1",
     "next-i18next": "^13.2.2",
     "react": "18.2.0",
@@ -35,6 +37,7 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.13",
     "@types/eslint": "^8.21.3",
     "@types/next-auth": "^3.15.0",
     "@types/node": "^18.15.5",

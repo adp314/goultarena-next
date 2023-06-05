@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
+import { useSession } from "next-auth/react";
 
 interface ComponentProps {
   src: any;
@@ -8,6 +8,7 @@ interface ComponentProps {
   packName: string;
   packPrice: string;
   packDescription: string;
+  product: string;
 }
 
 const stripePromise = loadStripe(
@@ -22,30 +23,33 @@ export const ProductCard: React.FC<ComponentProps> = ({
   packName,
   packPrice,
   packDescription,
+  product,
 }) => {
-  useEffect(() => {
-    // Check to see if this is a redirect back from Checkout
-    const query = new URLSearchParams(window.location.search);
-    if (query.get("success")) {
-      console.log("Order placed! You will receive an email confirmation.");
-    }
+  const { data: session } = useSession();
 
-    if (query.get("canceled")) {
-      console.log(
-        "Order canceled -- continue to shop around and checkout when you’re ready."
-      );
+  const handleCheckout = async () => {
+    try {
+      if (session) {
+        const stripe = await stripePromise;
+        if (stripe) {
+          const response = await fetch("/api/payments/checkout_sessions", {
+            method: "POST",
+            body: JSON.stringify({
+              product,
+              userId: session.user.id,
+              username: session.user.username,
+              email: session.user.email,
+              packName: packName,
+            }),
+          });
+          const checkoutSession = await response.json();
+          await stripe.redirectToCheckout({ sessionId: checkoutSession }); // Pass sessionId as an object
+        }
+      }
+    } catch (error) {
+      console.error(error);
     }
-  }, []);
-
-  // const submitPayement = () => {
-  //   const response = fetch("/api/payments/checkout_sessions", {
-  //     method: "POST",
-  //     // body: JSON.stringify(data),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-  // };
+  };
 
   return (
     <div className=" flex h-max w-72 flex-col items-center justify-center rounded-md bg-neutral-100 px-8 py-6  shadow-md">
@@ -55,17 +59,15 @@ export const ProductCard: React.FC<ComponentProps> = ({
       <span className="mt-6 text-xl font-bold">{packName}</span>
       <span className="mt-2 text-3xl font-bold">{packPrice}</span>
       <p className="mt-6 text-center">{packDescription}</p>
-      <form action="/api/payments/checkout_sessions" method="POST">
-        <section>
-          <button
-            type="submit"
-            role="link"
-            className="mt-6 w-full rounded-lg bg-orange-800 py-4 text-white hover:bg-orange-700"
-          >
-            Checkout
-          </button>
-        </section>
-      </form>
+
+      <button
+        type="submit"
+        onClick={() => handleCheckout()}
+        role="link"
+        className="mt-6 w-full rounded-lg bg-orange-800 px-6 py-4 text-white hover:bg-orange-700"
+      >
+        Checkout
+      </button>
     </div>
   );
 };

@@ -74,6 +74,17 @@ model User {
     totalSpends   Float     @default(0)
     accounts      Account[]
     sessions      Session[]
+    Payment       Payment[]
+}
+
+model Payment {
+    id                String  @id @default(cuid())
+    user              User    @relation(fields: [userId], references: [id])
+    userId            String
+    productName       String
+    codeCreator       String?
+    checkoutSessionId String
+    status            String
 }
 
 model VerificationToken {
