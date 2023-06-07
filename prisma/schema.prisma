@@ -48,10 +48,10 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
+    id            String         @id @default(cuid())
     name          String?
-    username      String?   @unique
-    email         String?   @unique
+    username      String?        @unique
+    email         String?        @unique
     emailVerified DateTime?
     image         String?
     characterLink String?
@@ -59,32 +59,64 @@ model User {
     discord       String?
     twitter       String?
     youtube       String?
+    accounts      Account[]
+    sessions      Session[]
+    PaymentOrder  PaymentOrder[]
+    gameInfos     GameInfos?     @relation(fields: [gameInfosId], references: [id])
+    gameInfosId   String?        @unique
+    userWallet    UserWallet?    @relation(fields: [userWalletId], references: [id])
+    userWalletId  String?        @unique
+}
+
+model GameInfos {
+    id          String  @id @default(cuid())
+    level       Int     @default(1)
+    rank        String?
+    totalMatchs Int     @default(0)
+    totalWins   Int     @default(0)
+    totalDraws  Int     @default(0)
+    totalLooses Int     @default(0)
+    user        User?
+}
+
+model UserWallet {
+    id            String @id @default(cuid())
+    tokensWallet  Float  @default(10)
+    totalEarnings Float  @default(0)
+    totalSpends   Float  @default(0)
+    User          User?
+}
+
+model PaymentOrder {
+    id                String        @id @default(cuid())
+    user              User          @relation(fields: [userId], references: [id])
+    userId            String
+    productName       String
+    codeCreator       String?
+    checkoutSessionId String
+    status            String
+    billingInfos      BillingInfos? @relation(fields: [billingInfosId], references: [id])
+    billingInfosId    String?
+}
+
+model BillingInfos {
+    id            String          @id @default(cuid())
     firstName     String?
     lastName      String?
     country       String?
     street        String?
     number        String?
     zipCode       String?
-    totalMatchs   Int       @default(0)
-    totalWins     Int       @default(0)
-    totalDraws    Int       @default(0)
-    totalLooses   Int       @default(0)
-    wallet        Float     @default(0)
-    totalEarnings Float     @default(0)
-    totalSpends   Float     @default(0)
-    accounts      Account[]
-    sessions      Session[]
-    Payment       Payment[]
+    iban          String?
+    PaymentOrder  PaymentOrder[]
+    cashoutDemand CashoutDemand[]
 }
 
-model Payment {
-    id                String  @id @default(cuid())
-    user              User    @relation(fields: [userId], references: [id])
-    userId            String
-    productName       String
-    codeCreator       String?
-    checkoutSessionId String
-    status            String
+model CashoutDemand {
+    id             String        @id @default(cuid())
+    amount         Float?
+    BillingInfos   BillingInfos? @relation(fields: [billingInfosId], references: [id])
+    billingInfosId String?
 }
 
 model VerificationToken {

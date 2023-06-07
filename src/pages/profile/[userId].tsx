@@ -45,7 +45,7 @@ const Profil: NextPage = () => {
                   <span className="text-2xl font-semibold text-orange-700">
                     Earnings
                   </span>
-                  <span className="mt-2 text-2xl font-bold">0 €</span>
+                  <span className="mt-2 text-2xl font-bold">{userData.} €</span>
                 </div>
                 <div className="h-full w-[1px] bg-neutral-800" />
                 <div className="my-auto flex flex-col text-center">
@@ -53,7 +53,7 @@ const Profil: NextPage = () => {
                     Count Stats
                   </span>
                   <span className="mt-2 text-2xl font-bold">
-                    {userData.totalWins} <span>W</span> - {userData.totalDraws}{" "}
+                    {userData.gameInfos[0].totalWins} <span>W</span> - {userData.totalDraws}{" "}
                     D - {userData.totalLooses} L
                   </span>
                 </div>

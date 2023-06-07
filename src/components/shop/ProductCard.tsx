@@ -45,6 +45,7 @@ export const ProductCard: React.FC<ComponentProps> = ({
           const checkoutSession = await response.json();
           await stripe.redirectToCheckout({ sessionId: checkoutSession }); // Pass sessionId as an object
         }
+        console.log(stripe);
       }
     } catch (error) {
       console.error(error);

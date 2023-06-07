@@ -9,6 +9,11 @@ export default async function GET(req: NextApiRequest, res: NextApiResponse) {
       where: {
         id: id,
       },
+      include: {
+        accounts: true,
+        sessions: true,
+        PaymentOrder: true,
+      },
     });
 
     if (userData) {

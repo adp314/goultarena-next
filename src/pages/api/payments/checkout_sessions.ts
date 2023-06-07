@@ -1,9 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@/server/db";
-import { getServerAuthSession } from "@/server/auth";
 import Stripe from "stripe";
 import { z } from "zod";
-import cors from "cors";
 
 const userInfos = z.object({
   userId: z.string(),
@@ -22,8 +20,6 @@ if (!stripeSecretKey) {
 const stripe = new Stripe(stripeSecretKey, {
   apiVersion: "2022-11-15",
 });
-
-const stripeCheckoutUrl = "https://buy.stripe.com/test_4gwfYY6rpgvWdby145";
 
 export default async function POST(req: NextApiRequest, res: NextApiResponse) {
   // Set CORS headers
@@ -57,7 +53,7 @@ export default async function POST(req: NextApiRequest, res: NextApiResponse) {
         client_reference_id: userData.userId,
       });
 
-    const createPayment = await prisma.payment.create({
+    const createPayment = await prisma.paymentOrder.create({
       data: {
         userId: userData.userId,
         productName: userData.packName,
@@ -65,6 +61,7 @@ export default async function POST(req: NextApiRequest, res: NextApiResponse) {
         status: "pending",
       },
     });
+    console.log(createPayment);
     res.json(session.id);
     res.redirect(303, session.url as string);
   } catch (err: any) {
