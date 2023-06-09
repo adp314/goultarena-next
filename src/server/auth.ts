@@ -43,6 +43,7 @@ export const authOptions: NextAuthOptions = {
           },
           data: {
             username: newUsername,
+            role: User,
             // Create UserWallet and GameInfos for the user
             userWallet: {
               create: {

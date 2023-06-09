@@ -6,7 +6,7 @@ import { Footer } from "@/layouts/Footer";
 import { useGetUserById } from "@/hooks/ReactQuery/useGetUserById";
 import { useGetCharacter } from "@/hooks/ReactQuery/useGetCharacter";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { LoadingPage } from "@/components/LoadingPage";
+import { LoadingPage } from "@/components/Public/LoadingPage";
 import navweb from "@/assets/images/bg-iop-mob.jpg";
 import goultarenalogo from "public/assets/images/banner.jpg";
 import { FaDiscord, FaTwitter, FaYoutube } from "react-icons/Fa";
@@ -45,7 +45,9 @@ const Profil: NextPage = () => {
                   <span className="text-2xl font-semibold text-orange-700">
                     Earnings
                   </span>
-                  <span className="mt-2 text-2xl font-bold">{userData.} €</span>
+                  <span className="mt-2 text-2xl font-bold">
+                    {userData.userWallet.totalEarnings} €
+                  </span>
                 </div>
                 <div className="h-full w-[1px] bg-neutral-800" />
                 <div className="my-auto flex flex-col text-center">
@@ -53,8 +55,9 @@ const Profil: NextPage = () => {
                     Count Stats
                   </span>
                   <span className="mt-2 text-2xl font-bold">
-                    {userData.gameInfos[0].totalWins} <span>W</span> - {userData.totalDraws}{" "}
-                    D - {userData.totalLooses} L
+                    {userData.gameInfos.totalWins} <span>W</span> -{" "}
+                    {userData.gameInfos.totalDraws} D -{" "}
+                    {userData.gameInfos.totalLooses} L
                   </span>
                 </div>
                 <div className="h-full w-[1px] bg-neutral-800" />
@@ -111,7 +114,11 @@ const Profil: NextPage = () => {
               </div>
               <div className="mx-auto w-full max-w-2xl ">
                 <div className="flex w-full items-center justify-center rounded-md border border-neutral-300 py-16 shadow-md">
-                  <p className=" text-neutral-600">{userData.description}</p>
+                  <p className=" text-neutral-600">
+                    {userData.description
+                      ? userData.description
+                      : "no description..."}
+                  </p>
                 </div>
               </div>
             </div>

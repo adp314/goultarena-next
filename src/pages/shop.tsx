@@ -4,13 +4,12 @@ import { UpperNav } from "@/layouts/UpperNav";
 import { Footer } from "@/layouts/Footer";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { HomeFaq } from "@/components/HomeComponents/HomeFaq";
-import { PaymentProviders } from "@/components/HomeComponents/PaymentProviders";
-import { Reminder } from "@/components/HomeComponents/Reminder";
+import { HomeFaq } from "@/components/Public/HomeComponents/HomeFaq";
+import { PaymentProviders } from "@/components/Public/HomeComponents/PaymentProviders";
+import { Reminder } from "@/components/Public/HomeComponents/Reminder";
 import { Nav } from "@/layouts/Nav";
-import { ProductsChoice } from "@/components/shop/ProductsChoice";
+import { ProductsChoice } from "@/components/Public/shop/ProductsChoice";
 import navweb from "@/assets/images/bg-iop-mob.jpg";
-
 
 const Shop: NextPage = () => {
   return (

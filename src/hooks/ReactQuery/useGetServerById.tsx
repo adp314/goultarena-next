@@ -1,14 +1,14 @@
 import { useQuery } from "react-query";
 import { UserData } from "@/types";
 
-export const useGetUserById = (id: string) => {
+export const useGetServerById = (id: string) => {
   return useQuery(
-    ["getUserById"],
+    ["getServerById"],
     async () => {
-      const response = await fetch(`/api/user/get-user-byid?id=${id}`);
+      const response = await fetch(`/api/servers/get-server-byid?id=${id}`);
       const responseJSON = await response.json();
 
-      return responseJSON as UserData;
+      return responseJSON;
     },
     {
       enabled: !!id,

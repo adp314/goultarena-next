@@ -54,6 +54,7 @@ model User {
     email         String?        @unique
     emailVerified DateTime?
     image         String?
+    role          String         @default("user")
     characterLink String?
     description   String?
     discord       String?
@@ -76,7 +77,34 @@ model GameInfos {
     totalWins   Int     @default(0)
     totalDraws  Int     @default(0)
     totalLooses Int     @default(0)
+    lastMatchId String?
     user        User?
+}
+
+model Server {
+    id              String  @id @default(cuid())
+    name            String  @unique
+    startDate       String
+    finishDate      String
+    gameCategory    String  @unique
+    date            String
+    image           String  @default("")
+    totalRegistered Int
+    serverMatchs    Match[]
+}
+
+model Match {
+    id               String  @id @default(cuid())
+    initialDate      String
+    finishDate       String
+    amount           Float
+    team_a_playerIds String
+    team_b_playerIds String
+    score_team_a     String
+    score_team_b     String
+    winnerTeam       String
+    server           Server? @relation(fields: [serverId], references: [id])
+    serverId         String?
 }
 
 model UserWallet {

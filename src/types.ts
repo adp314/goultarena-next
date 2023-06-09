@@ -44,11 +44,11 @@ export interface UserData {
   discord: string;
   twitter: string;
   youtube: string;
+  gameInfos: GameInfosData;
+  billingInfos: BillingInfosData;
+  userWallet: UserWalletData;
   accounts: AccountData[];
   session: SessionData[];
-  gameInfos: GameInfosData[];
-  billingInfos: BillingInfosData[];
-  paymentOrder: PaymentOrderData[];
 }
 
 export interface GameInfosData {
@@ -93,6 +93,32 @@ export interface CashoutDemandData {
   amount: number;
   BillingInfos: BillingInfosData;
   billingInfosId: string;
+}
+
+export interface MatchData {
+  id: string;
+  initialDate: string;
+  finishDate: string;
+  amount: number;
+  team_a_playerIds: string;
+  team_b_playerIds: string;
+  score_team_a: string;
+  score_team_b: string;
+  winnerTeam: string;
+  server: ServerData;
+  serverId: string;
+}
+
+export interface ServerData {
+  id: string;
+  name: string;
+  startDate: string;
+  finishDate: string;
+  gameCategory: string;
+  date: string;
+  image: string;
+  totalRegistered: number;
+  serverMatchs: MatchData[];
 }
 
 export interface UserWalletData {

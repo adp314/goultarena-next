@@ -4,13 +4,13 @@ import { NavHome } from "@/layouts/NavHome";
 import { Footer } from "@/layouts/Footer";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { VersusModes } from "@/components/HomeComponents/VersusModes";
-import { UseFlow } from "@/components/HomeComponents/UseFlow";
-import { VipPass } from "@/components/HomeComponents/VipPass";
-import { HomeCommunity } from "@/components/HomeComponents/HomeCommunity";
-import { HomeFaq } from "@/components/HomeComponents/HomeFaq";
-import { PaymentProviders } from "@/components/HomeComponents/PaymentProviders";
-import { Reminder } from "@/components/HomeComponents/Reminder";
+import { VersusModes } from "@/components/Public/HomeComponents/VersusModes";
+import { UseFlow } from "@/components/Public/HomeComponents/UseFlow";
+import { VipPass } from "@/components/Public/HomeComponents/VipPass";
+import { HomeCommunity } from "@/components/Public/HomeComponents/HomeCommunity";
+import { HomeFaq } from "@/components/Public/HomeComponents/HomeFaq";
+import { PaymentProviders } from "@/components/Public/HomeComponents/PaymentProviders";
+import { Reminder } from "@/components/Public/HomeComponents/Reminder";
 
 const Home: NextPage = () => {
   return (

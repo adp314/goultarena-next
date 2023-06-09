@@ -1,9 +1,9 @@
 import goultarenalogo from "@/assets/images/goultarenalogo.png";
 import navweb from "@/assets/images/bg-iop-mob.jpg";
 import { useRouter } from "next/router";
-import { LoginBtn } from "@/components/LoginBtn";
-import { ConnectedBtn } from "@/components/ConnectedBtn";
-import { TradBtn } from "@/components/TradBtn";
+import { LoginBtn } from "@/components/Public/LoginBtn";
+import { ConnectedBtn } from "@/components/Public/ConnectedBtn";
+import { TradBtn } from "@/components/Public/TradBtn";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import {
@@ -67,7 +67,10 @@ export const Nav: React.FC<NavProps> = ({
           {size.width >= 1024 && (
             <div className="flex items-center gap-8 text-white">
               <ul className="flex items-center justify-start gap-6 font-Poppins text-xl ">
-                <li className="cursor-pointer font-medium hover:text-gray-200">
+                <li
+                  className="cursor-pointer font-medium hover:text-gray-200"
+                  onClick={() => router.push("/matchfinder")}
+                >
                   {t("nav_matchfinder")}
                 </li>
                 <li className="cursor-pointer font-medium hover:text-gray-200">

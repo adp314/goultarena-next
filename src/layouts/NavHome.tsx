@@ -1,9 +1,9 @@
 import goultarenalogo from "@/assets/images/goultarenalogo.png";
 import navweb from "@/assets/images/bg-iop-mob.jpg";
 import { useRouter } from "next/router";
-import { LoginBtn } from "@/components/LoginBtn";
-import { ConnectedBtn } from "@/components/ConnectedBtn";
-import { TradBtn } from "@/components/TradBtn";
+import { LoginBtn } from "@/components/Public/LoginBtn";
+import { ConnectedBtn } from "@/components/Public/ConnectedBtn";
+import { TradBtn } from "@/components/Public/TradBtn";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import {

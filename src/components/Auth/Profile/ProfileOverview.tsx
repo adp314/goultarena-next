@@ -5,7 +5,7 @@ import { Spinner } from "flowbite-react";
 import Image from "next/image";
 import coins from "@/assets/images/icons8-coins-94.png";
 import perso from "@/assets/images/perso.png";
-import { LoadingPage } from "@/components/LoadingPage";
+import { LoadingPage } from "@/components/Public/LoadingPage";
 import { useGetCharacter } from "@/hooks/ReactQuery/useGetCharacter";
 import { useGetUserData } from "@/hooks/ReactQuery/useGetUserData";
 

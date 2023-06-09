@@ -26,7 +26,6 @@ export const ProfileInfos = () => {
   useEffect(() => {
     if (userData) {
       setValue("characterLink", userData.characterLink);
-      setValue("description", userData.lastName);
       setValue("username", userData.username);
       setValue("discord", userData.discord);
       setValue("twitter", userData.twitter);

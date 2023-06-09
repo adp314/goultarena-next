@@ -5,7 +5,7 @@ export default async function GET(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;
 
   if (id && typeof id === "string") {
-    const userData = await prisma.user.findUnique({
+    const serverData = await prisma.user.findUnique({
       where: {
         id: id,
       },
@@ -18,8 +18,8 @@ export default async function GET(req: NextApiRequest, res: NextApiResponse) {
       },
     });
 
-    if (userData) {
-      return res.status(200).send(userData);
+    if (serverData) {
+      return res.status(200).send(serverData);
     } else {
       return res.status(404).end();
     }
