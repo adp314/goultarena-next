@@ -54,12 +54,12 @@ model User {
     email         String?        @unique
     emailVerified DateTime?
     image         String?
-    role          String         @default("user")
     characterLink String?
     description   String?
     discord       String?
     twitter       String?
     youtube       String?
+    role          Role           @default(USER)
     accounts      Account[]
     sessions      Session[]
     PaymentOrder  PaymentOrder[]
@@ -67,6 +67,12 @@ model User {
     gameInfosId   String?        @unique
     userWallet    UserWallet?    @relation(fields: [userWalletId], references: [id])
     userWalletId  String?        @unique
+}
+
+enum Role {
+    USER
+    ADMIN
+    BAN
 }
 
 model GameInfos {

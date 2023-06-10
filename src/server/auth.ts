@@ -3,6 +3,7 @@ import {
   getServerSession,
   type NextAuthOptions,
   type DefaultSession,
+  DefaultUser,
 } from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
@@ -17,20 +18,6 @@ const generateSignInUserName = () => {
   )}${Math.floor(Math.random() * 10)}`;
 };
 
-declare module "next-auth" {
-  interface Session extends DefaultSession {
-    user: {
-      id: string;
-      username: string;
-      // ...other properties
-      // role: UserRole;
-    } & DefaultSession["user"];
-  }
-
-  interface User {
-    username: string;
-  }
-}
 export const authOptions: NextAuthOptions = {
   debug: env.NODE_ENV !== "production",
   events: {
@@ -39,11 +26,12 @@ export const authOptions: NextAuthOptions = {
       if (!user.username) {
         await prisma.user.update({
           where: {
+          
+
             id: user.id,
           },
           data: {
             username: newUsername,
-            role: User,
             // Create UserWallet and GameInfos for the user
             userWallet: {
               create: {
@@ -75,6 +63,7 @@ export const authOptions: NextAuthOptions = {
       if (session.user) {
         session.user.id = user.id;
         session.user.username = user.username;
+        session.user.role = user.role;
       }
       return session;
     },
