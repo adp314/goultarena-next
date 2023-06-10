@@ -1,3 +1,5 @@
+import { useQueryClient } from "react-query";
+
 interface ServerSelectionProps {
   gameSelected: number;
   onGameSelected: (selected: number) => void;
@@ -11,12 +13,17 @@ export const ServerSelection = ({
     onGameSelected(selected);
   };
 
+  const queryClient = useQueryClient();
+
   return (
     <div className="absolute -top-10 left-0 right-0 mx-auto w-full max-w-6xl">
       <div className="flex h-20 justify-evenly rounded-md bg-gradient-to-br from-neutral-300 via-neutral-200 to-neutral-100 px-6 py-4 text-neutral-800 shadow-lg">
         <div
           className="my-auto flex cursor-pointer flex-col text-center"
-          onClick={() => handleClick(1)}
+          onClick={() => {
+            handleClick(1);
+            queryClient.invalidateQueries("getServerByGameCategory");
+          }}
         >
           <span
             className={`text-xl font-semibold ${

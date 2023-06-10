@@ -1,49 +1,58 @@
 import { ServerCard } from "./ServerCard";
-import orukam from "@/assets/images/servBanners/orukam.png";
-import defaultservers from "@/assets/images/servBanners/serveurs.png";
-import { useState } from "react";
-import { useQuery } from "react-query";
-
-const getAllServersByCategory = (gameCategory: string) => {
-  return useQuery(
-    ["getServerById"],
-    async () => {
-      const response = await fetch(
-        `/api/servers/get-server-byGame?gameCategory=${gameCategory}`
-      );
-      const responseJSON = await response.json();
-
-      return responseJSON;
-    },
-    {
-      enabled: !!gameCategory,
-    }
-  );
-};
+import { ServerData } from "@/types";
+import { useState, useEffect } from "react";
 
 export const ServerList = ({ gameSelected }: { gameSelected: number }) => {
-  const [gameCategory, setGameCategory] = useState<string>("dofus");
-  if (gameSelected === 1) {
-    setGameCategory("dofus");
-  } else if (gameSelected === 2) {
-    setGameCategory("dofus-retro");
-  } else if (gameSelected === 3) {
-    setGameCategory("dofus-touch");
-  }
+  const [gameServers, setGameServers] = useState<ServerData[]>([]);
+  const [game, setGame] = useState<string>("");
+  useEffect(() => {
+    if (gameSelected === 1) {
+      setGame("dofus");
+    } else if (gameSelected === 2) {
+      setGame("dofus-retro");
+    } else if (gameSelected === 3) {
+      setGame("dofus-touch");
+    }
 
-  const { data: allGameServers } = getAllServersByCategory(gameCategory);
+    const fetchGameServers = async () => {
+      try {
+        const response = await fetch(
+          `/api/game-servers/get-servers-byGame?gameCategory=${game}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const responseJSON = await response.json();
+        console.log(responseJSON);
+        setGameServers(responseJSON);
+        return responseJSON;
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchGameServers();
+  }, [game, gameSelected]);
 
   return (
     <div className="mx-auto h-screen w-full max-w-6xl">
-      <div className="flex w-full max-w-6xl flex-wrap items-center justify-center gap-8 pt-20">
-        <ServerCard
-          image={defaultservers}
-          title={"test"}
-          players={20}
-          date={"09/06/2023"}
-          totalGames={20}
-        />
-      </div>
+      {gameServers && (
+        <div className="flex w-full max-w-6xl flex-wrap items-center justify-center gap-8 pt-20">
+          {gameServers.map((server: ServerData) => (
+            <ServerCard
+              key={server.id}
+              image={server.linkImage as string}
+              title={server.name}
+              players={0}
+              date={server.finishDate}
+              totalGames={0}
+              serverId={server.id}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

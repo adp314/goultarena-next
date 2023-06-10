@@ -1,5 +1,4 @@
 import goultarenalogo from "@/assets/images/goultarenalogo.png";
-import navweb from "@/assets/images/bg-iop-mob.jpg";
 import { useRouter } from "next/router";
 import { LoginBtn } from "@/components/Public/LoginBtn";
 import { ConnectedBtn } from "@/components/Public/ConnectedBtn";
@@ -17,6 +16,7 @@ import {
 import { useWindowSize } from "@/hooks/useWindowSize";
 import { useState } from "react";
 import { useTranslation } from "next-i18next";
+import Link from "next/link";
 
 interface Size {
   width: number;
@@ -49,6 +49,8 @@ export const Nav: React.FC<NavProps> = ({
       <Image
         src={imageName}
         alt="Banner"
+        width={1920}
+        height={1080}
         className={`absolute -z-10 h-full w-full object-cover ${imageObjectPosition}`}
       />
       <div className={`h-full w-full bg-black ${imageOpacity} `}>
@@ -67,21 +69,21 @@ export const Nav: React.FC<NavProps> = ({
           {size.width >= 1024 && (
             <div className="flex items-center gap-8 text-white">
               <ul className="flex items-center justify-start gap-6 font-Poppins text-xl ">
-                <li
+                <Link
+                  href={"/matchfinder"}
                   className="cursor-pointer font-medium hover:text-gray-200"
-                  onClick={() => router.push("/matchfinder")}
                 >
                   {t("nav_matchfinder")}
-                </li>
+                </Link>
                 <li className="cursor-pointer font-medium hover:text-gray-200">
                   {t("nav_tournaments")}
                 </li>
-                <li
+                <Link
+                  href={"/shop"}
                   className="cursor-pointer font-medium hover:text-gray-200"
-                  onClick={() => router.push("/shop")}
                 >
                   {t("nav_shop")}
-                </li>
+                </Link>
                 <li
                   className="relative flex cursor-pointer  "
                   onClick={() => setIsSubNavOpen(!isSubNavOpen)}

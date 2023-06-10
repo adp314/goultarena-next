@@ -16,10 +16,10 @@ const Shop: NextPage = () => {
     <>
       <UpperNav />
       <Nav
-        height="h-[30rem]"
+        height="h-[28rem]"
         imageName={navweb}
         title="Shop"
-        imageOpacity="bg-opacity-60"
+        imageOpacity="bg-opacity-50"
         imageObjectPosition="object-top"
       />
       <div className="relative h-[40rem] bg-white">

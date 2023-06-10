@@ -10,7 +10,7 @@
 const config = {
   reactStrictMode: true,
   images: {
-    domains: ["cdn.discordapp.com"],
+    domains: ["cdn.discordapp.com", "i.imgur.com"],
   },
   /**
    * If you have the "experimental: { appDir: true }" setting enabled, then you

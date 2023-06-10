@@ -2,6 +2,7 @@ import { type NextPage } from "next";
 import { useRouter } from "next/router";
 import { UpperNav } from "@/layouts/UpperNav";
 import { Nav } from "@/layouts/Nav";
+
 import { Footer } from "@/layouts/Footer";
 import { useGetUserById } from "@/hooks/ReactQuery/useGetUserById";
 import { useGetCharacter } from "@/hooks/ReactQuery/useGetCharacter";
@@ -25,10 +26,10 @@ const Profil: NextPage = () => {
         <>
           <UpperNav />
           <Nav
-            height="h-96"
-            imageName={goultarenalogo}
+            height="h-[28rem]"
+            imageName={navweb}
             title="Profile"
-            imageOpacity="bg-opacity-40"
+            imageOpacity="bg-opacity-50"
             imageObjectPosition="object-top"
           />
           <div className="relative">

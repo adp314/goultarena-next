@@ -2,6 +2,7 @@ import { type NextPage } from "next";
 import { UpperNav } from "@/layouts/UpperNav";
 import { useRouter } from "next/router";
 import { Footer } from "@/layouts/Footer";
+import navweb from "@/assets/images/bg-iop-mob.jpg";
 import goultarenalogo from "public/assets/images/banner.jpg";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Nav } from "@/layouts/Nav";
@@ -20,10 +21,10 @@ const Matchfinder: NextPage = () => {
     <>
       <UpperNav />
       <Nav
-        height="h-96"
-        imageName={goultarenalogo}
+        height="h-[28rem]"
+        imageName={navweb}
         title="Matchfinder"
-        imageOpacity="bg-opacity-40"
+        imageOpacity="bg-opacity-50"
         imageObjectPosition="object-top"
       />
       <div className="relative">

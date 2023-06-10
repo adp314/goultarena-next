@@ -116,8 +116,8 @@ export interface ServerData {
   finishDate: string;
   gameCategory: string;
   date: string;
-  image: string;
-  totalRegistered: number;
+  linkImage?: string;
+  totalRegistered?: number;
   serverMatchs: MatchData[];
 }
 

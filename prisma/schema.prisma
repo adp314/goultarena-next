@@ -88,14 +88,13 @@ model GameInfos {
 }
 
 model Server {
-    id              String  @id @default(cuid())
-    name            String  @unique
-    startDate       String
-    finishDate      String
-    gameCategory    String  @unique
-    date            String
-    image           String  @default("")
-    totalRegistered Int
+    id              String   @id @default(cuid())
+    name            String   @unique
+    startDate       DateTime
+    finishDate      DateTime
+    gameCategory    String
+    linkImage       String?
+    totalRegistered Int?
     serverMatchs    Match[]
 }
 
