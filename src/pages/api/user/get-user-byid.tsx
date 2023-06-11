@@ -12,7 +12,7 @@ export default async function GET(req: NextApiRequest, res: NextApiResponse) {
       include: {
         accounts: true,
         sessions: true,
-        PaymentOrder: true,
+        paymentOrder: true,
         gameInfos: true,
         userWallet: true,
       },

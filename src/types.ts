@@ -49,6 +49,7 @@ export interface UserData {
   userWallet: UserWalletData;
   accounts: AccountData[];
   session: SessionData[];
+  serverRegistered: String[];
 }
 
 export interface GameInfosData {

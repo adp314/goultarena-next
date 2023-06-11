@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { UserData } from "@/types";
 
-export const useGetUserById = (id: string) => {
+export const useGetUserById = (id: string | undefined) => {
   return useQuery(
     ["getUserById"],
     async () => {
@@ -11,7 +11,7 @@ export const useGetUserById = (id: string) => {
       return responseJSON as UserData;
     },
     {
-      enabled: !!id,
+      enabled: !!id, // Enable the query only when `id` has a value
     }
   );
 };
