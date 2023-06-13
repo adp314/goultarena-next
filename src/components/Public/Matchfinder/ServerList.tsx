@@ -1,6 +1,7 @@
 import { ServerCard } from "./ServerCard";
 import { ServerData } from "@/types";
 import { useState, useEffect } from "react";
+import { LoadingPage } from "../LoadingPage";
 
 export const ServerList = ({ gameSelected }: { gameSelected: number }) => {
   const [gameServers, setGameServers] = useState<ServerData[]>([]);

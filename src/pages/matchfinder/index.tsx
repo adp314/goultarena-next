@@ -28,6 +28,7 @@ const Matchfinder: NextPage = () => {
         imageObjectPosition="object-top"
       />
       <div className="relative">
+        
         <ServerSelection
           gameSelected={gameSelected}
           onGameSelected={handleGameSelection}

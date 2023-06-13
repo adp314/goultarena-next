@@ -96,8 +96,8 @@ const DofusServer: NextPage = () => {
           />
           <div className="w-full bg-neutral-200 shadow-md">
             <div className="container mx-auto flex max-w-7xl items-center justify-between py-4">
-              <div className="flex">
-                <div className="flex h-8 w-24 cursor-pointer justify-center border-b-2 border-orange-800 pt-1">
+              <div className="flex ">
+                <div className="flex h-8 w-24  justify-center border-b-2 border-orange-800 pt-1">
                   <span className="text-sm font-semibold uppercase text-orange-800">
                     All
                   </span>
@@ -247,6 +247,9 @@ const DofusServer: NextPage = () => {
 
             <div className="ml-20 w-full border-2"></div>
           </div>
+          <Modal>
+            
+          </Modal>
           <div>{serverData ? serverData.id : "no server id"}</div>
         </>
       ) : (
