@@ -56,18 +56,21 @@ export const NavHome = () => {
           {size.width >= 1024 && (
             <div className="flex items-center gap-8 text-white">
               <ul className="flex items-center justify-start gap-6 font-Poppins text-xl ">
-                <li className="cursor-pointer font-medium hover:text-gray-200">
+                <Link
+                  href={"/matchfinder"}
+                  className="cursor-pointer font-medium hover:text-gray-200"
+                >
                   {t("nav_matchfinder")}
-                </li>
+                </Link>
                 <li className="cursor-pointer font-medium hover:text-gray-200">
                   {t("nav_tournaments")}
                 </li>
-                <li
+                <Link
+                  href={"/shop"}
                   className="cursor-pointer font-medium hover:text-gray-200"
-                  onClick={() => router.push("/shop")}
                 >
                   {t("nav_shop")}
-                </li>
+                </Link>
                 <li
                   className="relative flex cursor-pointer  "
                   onClick={() => setIsSubNavOpen(!isSubNavOpen)}

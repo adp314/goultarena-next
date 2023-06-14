@@ -18,7 +18,18 @@ import { UpperNav } from "@/layouts/UpperNav";
 import { LoadingPage } from "@/components/Public/LoadingPage";
 import { useGetUserById } from "@/hooks/ReactQuery/useGetUserById";
 import { useMutation } from "react-query";
-import { Modal } from "flowbite-react";
+import { Modal, Label, TextInput } from "flowbite-react";
+import { useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type Inputs = {
+  characterLink: string;
+  description: string;
+  username: string;
+  discord: string;
+  twitter: string;
+  youtube: string;
+};
 
 const DofusServer: NextPage = () => {
   const router = useRouter();
@@ -28,6 +39,7 @@ const DofusServer: NextPage = () => {
   const { serverId } = router.query;
   const { data: serverData } = useGetServerById(serverId as string);
   const { data: userData } = useGetUserById(userId) ?? {};
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const formattedStartDate = new Date(serverData?.startDate).toLocaleDateString(
     "fr",
@@ -45,6 +57,21 @@ const DofusServer: NextPage = () => {
     month: "2-digit",
     year: "numeric",
   });
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<Inputs>();
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const newRegisterMutation = useMutation(async () => {
     if (userData) {
@@ -82,6 +109,14 @@ const DofusServer: NextPage = () => {
     }
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       {serverData ? (
@@ -94,8 +129,51 @@ const DofusServer: NextPage = () => {
             imageOpacity="bg-opacity-50"
             imageObjectPosition="object-top"
           />
-          <div className="w-full bg-neutral-200 shadow-md">
-            <div className="container mx-auto flex max-w-7xl items-center justify-between py-4">
+          <Modal
+            show={isModalOpen}
+            size="md"
+            popup
+            onClose={() => closeModal()}
+          >
+            <Modal.Header />
+            <Modal.Body>
+              <div className="space-y-6">
+                <h3 className="text-xl font-medium text-gray-900 dark:text-white">
+                  Create Match
+                </h3>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <div>
+                    <div className="mb-2 block">
+                      <Label htmlFor="email" value="Your email" />
+                    </div>
+                    <TextInput
+                      id="email"
+                      placeholder="name@company.com"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <div className="mb-2 block">
+                      <Label htmlFor="password" value="Your password" />
+                    </div>
+                    <TextInput id="password" type="password" required />
+                  </div>
+
+                  <button
+                    className=" flex w-full cursor-pointer items-center justify-center rounded-lg bg-orange-700 px-5 py-3 hover:bg-orange-800 "
+                    type="submit"
+                    onClick={() => openModal()}
+                  >
+                    <span className="text-sm uppercase text-neutral-100 hover:text-neutral-300">
+                      Create
+                    </span>
+                  </button>
+                </form>
+              </div>
+            </Modal.Body>
+          </Modal>
+          <div className="relative h-20 w-full bg-neutral-200 shadow-md">
+            <div className="container absolute left-0 right-0 z-20 mx-auto flex max-w-7xl items-center justify-between py-4">
               <div className="flex ">
                 <div className="flex h-8 w-24  justify-center border-b-2 border-orange-800 pt-1">
                   <span className="text-sm font-semibold uppercase text-orange-800">
@@ -142,7 +220,10 @@ const DofusServer: NextPage = () => {
                     Server Leaderboard
                   </span>
                 </div>
-                <button className="ml-6 flex items-center rounded-lg bg-orange-800 px-5 py-3 hover:bg-orange-700 ">
+                <button
+                  className="ml-6 flex cursor-pointer items-center rounded-lg bg-orange-800 px-5 py-3 hover:bg-orange-700 "
+                  onClick={() => openModal()}
+                >
                   <span className="text-sm uppercase text-neutral-200">
                     Create match
                   </span>
@@ -247,9 +328,7 @@ const DofusServer: NextPage = () => {
 
             <div className="ml-20 w-full border-2"></div>
           </div>
-          <Modal>
-            
-          </Modal>
+
           <div>{serverData ? serverData.id : "no server id"}</div>
         </>
       ) : (
