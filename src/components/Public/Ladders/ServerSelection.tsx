@@ -22,7 +22,6 @@ export const ServerSelection = ({
           className="my-auto flex cursor-pointer flex-col text-center"
           onClick={() => {
             handleClick(1);
-            queryClient.invalidateQueries("getServerByGameCategory");
           }}
         >
           <span

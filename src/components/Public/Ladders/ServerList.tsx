@@ -3,22 +3,14 @@ import { ServerData } from "@/types";
 import { useState, useEffect } from "react";
 import { LoadingPage } from "../LoadingPage";
 
-export const ServerList = ({ gameSelected }: { gameSelected: number }) => {
+export const ServerList = ({ gameSelected }: { gameSelected: string }) => {
   const [gameServers, setGameServers] = useState<ServerData[]>([]);
   const [game, setGame] = useState<string>("");
   useEffect(() => {
-    if (gameSelected === 1) {
-      setGame("dofus");
-    } else if (gameSelected === 2) {
-      setGame("dofus-retro");
-    } else if (gameSelected === 3) {
-      setGame("dofus-touch");
-    }
-
     const fetchGameServers = async () => {
       try {
         const response = await fetch(
-          `/api/game-servers/get-servers-byGame?gameCategory=${game}`,
+          `/api/game-servers/get-servers-byGame?gameCategory=${gameSelected}`,
           {
             method: "GET",
             headers: {
@@ -35,7 +27,7 @@ export const ServerList = ({ gameSelected }: { gameSelected: number }) => {
       }
     };
     fetchGameServers();
-  }, [game, gameSelected]);
+  }, [gameSelected]);
 
   return (
     <div className="mx-auto h-screen w-full max-w-6xl">
@@ -50,6 +42,7 @@ export const ServerList = ({ gameSelected }: { gameSelected: number }) => {
               date={server.finishDate}
               totalGames={0}
               serverId={server.id}
+              game={gameSelected}
             />
           ))}
         </div>

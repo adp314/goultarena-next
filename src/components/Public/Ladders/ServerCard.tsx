@@ -10,6 +10,7 @@ interface ServerCardProps {
   players: number;
   date: string;
   totalGames: number;
+  game: string;
   serverId: string;
 }
 
@@ -19,6 +20,7 @@ export const ServerCard = ({
   players,
   date,
   totalGames,
+  game,
   serverId,
 }: ServerCardProps) => {
   const router = useRouter();
@@ -72,7 +74,7 @@ export const ServerCard = ({
         </div>
         <button
           className="mt-4 w-full rounded-lg bg-orange-700 bg-opacity-70 px-4 py-1 text-lg text-neutral-100 hover:bg-opacity-90"
-          onClick={() => router.push(`matchfinder/${serverId}`)}
+          onClick={() => router.push(`/ladders/${game}/${serverId}`)}
         >
           open
         </button>

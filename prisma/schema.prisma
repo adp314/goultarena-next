@@ -96,67 +96,48 @@ model Server {
     gameCategory           String
     linkImage              String?
     totalPlayersRegistered Int      @default(0)
+    totalTeamRegistered    Int      @default(0)
     serverMatchs           Match[]
 }
 
 model Match {
-    id                     String   @id @default(cuid())
-    created_at             DateTime @default(now())
-    matchCreationId        String
-    matchAcceptationId     String
-    gameCategory           String
-    amount                 Float
-    playersByTeam          Int
-    team_a_playerIds       String[]
-    team_b_playerIds       String[]
-    createdBy              String
-    acceptedBy             String
-    map                    Int
-    isDraft                Boolean  @default(false)
-    draftLink              String?
-    compo_team_a           String[]
-    compo_team_b           String[]
-    score_team_a           Int?
-    score_team_b           Int?
-    winnerTeam             String
-    linkImageProof         String?
-    createdPlayerSubmited  Boolean  @default(false)
-    acceptedPlayerSubmited Boolean  @default(false)
-    server                 Server?  @relation(fields: [serverId], references: [id])
-    serverId               String?
+    id               String   @id @default(cuid())
+    created_at       DateTime @default(now())
+    matchPostId      String
+    gameCategory     String
+    playersByTeam    Int
+    team_a_playerIds String[]
+    team_b_playerIds String[]
+    createdBy        String
+    acceptedBy       String
+    map              Int
+    isDraft          Boolean  @default(false)
+    draftLink        String?
+    compo_team_a     String[]
+    compo_team_b     String[]
+    score_team_a     Int?
+    score_team_b     Int?
+    winnerTeam       String
+    linkImageProof   String?
+    teamA_submited   Boolean  @default(false)
+    teamB_submited   Boolean  @default(false)
+    server           Server?  @relation(fields: [serverId], references: [id])
+    serverId         String?
 }
 
-model MatchCreation {
-    id                       String   @id @default(cuid())
-    gameCategory             String
-    createdBy                String
-    isCreationConfirmed      Boolean  @default(false)
-    amount                   Float
-    playersByTeam            Int
-    isDraft                  Boolean  @default(false)
-    draftLink                String?
-    compo_team_a             String[]
-    teamA_creation_playerIds String[]
-    firstPlayer_teamA_id     String?
-    secondPlayer_teamA_id    String?
-    thirdPlayer_teamA_id     String?
-    fourthPlayer_teamA_id    String?
-}
-
-model MatchAcceptation {
-    id                          String   @id @default(cuid())
-    matchCreationId             String
-    isAcceptationConfirmed      Boolean  @default(false)
-    acceptedBy                  String
-    amount                      Float
-    playersByTeam               Int
-    isDraft                     Boolean  @default(false)
-    compo_team_b                String[]
-    teamB_acceptation_playerIds String[]
-    firstPlayer_teamB_id        String?
-    secondPlayer_teamB_id       String?
-    thirdPlayer_teamB_id        String?
-    fourthPlayer_teamB_id       String?
+model MatchPost {
+    id              String   @id @default(cuid())
+    gameCategory    String
+    playersByTeam   Int
+    createdBy       String
+    acceptedBy      String?
+    isDraft         Boolean  @default(false)
+    draftLink       String?
+    compo_team_a    String[]
+    teamA_playerIds String[]
+    compo_team_b    String[]
+    teamB_playerIds String[]
+    isMatchAccepted Boolean  @default(false)
 }
 
 model UserWallet {

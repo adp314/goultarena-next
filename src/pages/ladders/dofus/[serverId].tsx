@@ -291,7 +291,7 @@ const DofusServer: NextPage = () => {
                   {!session ? (
                     <button
                       className="mt-4 w-full rounded-lg bg-orange-700 bg-opacity-70 px-4 py-1 text-lg text-neutral-100 hover:bg-opacity-90"
-                      onClick={() => router.push(`matchfinder/${serverId}`)}
+                      onClick={() => router.push(`ladders/${serverId}`)}
                       disabled={
                         !session ||
                         userData?.serverRegistered?.includes(serverData.id)

@@ -57,20 +57,20 @@ export const NavHome = () => {
             <div className="flex items-center gap-8 text-white">
               <ul className="flex items-center justify-start gap-6 font-Poppins text-xl ">
                 <Link
-                  href={"/matchfinder"}
+                  href={"/ladders/dofus"}
                   className="cursor-pointer font-medium hover:text-gray-200"
                 >
-                  {t("nav_matchfinder")}
+                  {t("nav_ladders")}
                 </Link>
                 <li className="cursor-pointer font-medium hover:text-gray-200">
                   {t("nav_tournaments")}
                 </li>
-                <Link
+                {/* <Link
                   href={"/shop"}
                   className="cursor-pointer font-medium hover:text-gray-200"
                 >
                   {t("nav_shop")}
-                </Link>
+                </Link> */}
                 <li
                   className="relative flex cursor-pointer  "
                   onClick={() => setIsSubNavOpen(!isSubNavOpen)}
