@@ -14,7 +14,7 @@ import { FaDiscord, FaTwitter, FaYoutube } from "react-icons/Fa";
 import Image from "next/image";
 import perso from "@/assets/images/perso.png";
 
-const Profil: NextPage = () => {
+const Profile: NextPage = () => {
   const router = useRouter();
   const { userId } = router.query;
   const { data: userData } = useGetUserById(userId as string);
@@ -93,7 +93,7 @@ const Profil: NextPage = () => {
                     </div>
                     <div className="flex items-center">
                       <FaTwitter className="ml-6 mr-1 text-lg text-blue-500" />
-                      <span>@{userData.twitter}</span>
+                      <span>{userData.twitter}</span>
                     </div>
                   </div>
                 </div>
@@ -141,4 +141,4 @@ export const getServerSideProps = async ({ locale }: { locale: string }) => {
   };
 };
 
-export default Profil;
+export default Profile;

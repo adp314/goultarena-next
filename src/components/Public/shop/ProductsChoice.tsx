@@ -10,7 +10,7 @@ export const ProductsChoice = () => {
         <ProductCard
           src={basic_coins}
           alt="basic_pack_img"
-          packName="5 tokens"
+          packName="400 GC"
           packPrice="5,99 €"
           product="price_1NFQIRLuqB4HccBmkWxI36Bs"
           packDescription="Perfect for start your first experience !"
@@ -18,7 +18,7 @@ export const ProductsChoice = () => {
         <ProductCard
           src={advanced_coins}
           alt="advanced_pack_img"
-          packName="10 tokens"
+          packName="1 000 GC"
           packPrice="10,49 €"
           product="price_1NFQKRLuqB4HccBmDTAGJY0o"
           packDescription="Your are confident, take benefits !"
@@ -26,11 +26,11 @@ export const ProductsChoice = () => {
         <ProductCard
           src={cash}
           alt="confirmed_pack_img"
-          packName="20 tokens"
+          packName="2 300 GC"
           packPrice="19,99 €"
           product="price_1NFQL2LuqB4HccBm7a1ZU1k8"
           packDescription="
-          This pack is for confirmed players, win 1 €."
+          This pack is for confirmed players."
         />
       </div>
     </div>

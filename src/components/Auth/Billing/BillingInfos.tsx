@@ -19,7 +19,7 @@ const getProfileUserData = () => {
     const response: Response = await fetch("/api/user/get-profile-infos", {
       method: "GET",
     });
-    const data: UserData = await response.json();
+    const data = await response.json();
     return data;
   });
 };

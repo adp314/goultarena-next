@@ -12,7 +12,7 @@ export const useGetCharacter = (profileUserData: UserData | undefined) => {
     async () => {
       if (profileUserData) {
         const nibApiRes = await fetch(
-          "https://dofuspp.nib.gg/api/skin?url=" +
+          "https://dofuspp.vercel.app/api/skin?url=" +
             profileUserData.characterLink,
           {
             headers: {

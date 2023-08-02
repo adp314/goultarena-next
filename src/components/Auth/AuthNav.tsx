@@ -27,12 +27,19 @@ export const AuthNav = () => {
   return (
     <div>
       {session && userData ? (
-        <div className="flex h-16 w-full items-center justify-between border-b-[1px] border-neutral-300 bg-neutral-100 px-8 text-neutral-800">
+        <div className="flex h-16 w-full  items-center justify-between border-b-[1px] border-neutral-300 bg-neutral-100 px-8 text-neutral-800">
           <span className="mt-0.5 text-lg font-semibold">{getPageName()}</span>
 
-          <div className="flex items-center">
+          <div
+            className={`relative flex cursor-pointer items-center rounded shadow-sm ${
+              isOpen ? " bg-white" : "bg-neutral-50"
+            }`}
+            onClick={() => {
+              setIsOpen(!isOpen);
+            }}
+          >
             <div className="flex items-end">
-              <Image src={coins} alt="CoinsIcon" className="h-6 w-6" />
+              <Image src={coins} alt="CoinsIcon" className="ml-3 h-6 w-6" />
               <span className="text-md ml-1 font-medium">
                 {userData.userWallet.tokensWallet}
               </span>
@@ -41,19 +48,16 @@ export const AuthNav = () => {
             <span className="text-md ml-2 font-medium">
               {userData.username}
             </span>
-            <div className="relative ml-3">
+            <div className=" ml-3">
               <Image
                 src={userData.image as string}
                 alt="test"
                 height={40}
                 width={40}
-                className="rounded-md border-[1px] border-neutral-400 shadow-md"
-                onClick={() => {
-                  setIsOpen(!isOpen);
-                }}
+                className=" rounded border-[1px] border-neutral-400 shadow-md"
               />
-              {isOpen ? <ConnectedDropdown /> : <></>}
             </div>
+            {isOpen ? <ConnectedDropdown /> : <></>}
           </div>
         </div>
       ) : (

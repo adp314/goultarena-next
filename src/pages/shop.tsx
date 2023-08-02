@@ -22,7 +22,7 @@ const Shop: NextPage = () => {
         imageOpacity="bg-opacity-50"
         imageObjectPosition="object-top"
       />
-      <div className="relative h-[40rem] bg-white">
+      <div className="relative h-[30rem] bg-white">
         <ProductsChoice />
       </div>
       <HomeFaq />

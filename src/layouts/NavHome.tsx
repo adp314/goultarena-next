@@ -65,12 +65,12 @@ export const NavHome = () => {
                 <li className="cursor-pointer font-medium hover:text-gray-200">
                   {t("nav_tournaments")}
                 </li>
-                {/* <Link
+                <Link
                   href={"/shop"}
                   className="cursor-pointer font-medium hover:text-gray-200"
                 >
                   {t("nav_shop")}
-                </Link> */}
+                </Link>
                 <li
                   className="relative flex cursor-pointer  "
                   onClick={() => setIsSubNavOpen(!isSubNavOpen)}

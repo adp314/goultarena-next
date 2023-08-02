@@ -76,6 +76,14 @@ enum Role {
     BAN
 }
 
+
+model Team {
+    id               String         @id @default(cuid())
+    name             String?
+   
+}
+
+
 model GameInfos {
     id          String  @id @default(cuid())
     level       Int     @default(1)

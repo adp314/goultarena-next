@@ -71,10 +71,6 @@ export const DashboardMenu = () => {
               <PrivacyPolicy strokeWidth={1} className="text-sm" />
               <span className="ml-2 text-sm ">Billing Infos</span>
             </Link>
-            <li className="mt-1 flex w-full cursor-pointer items-center justify-start rounded-md py-2 pl-2 text-neutral-600 hover:bg-neutral-100 hover:text-neutral-800">
-              <StatUp strokeWidth={1} className="text-sm" />
-              <span className="ml-2 text-sm ">Statistics</span>
-            </li>
           </ul>
         </div>
         <div className="mt-6 w-full">
